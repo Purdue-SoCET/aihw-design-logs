@@ -3,6 +3,7 @@ statement: I am not stuck.
 
 ## progress
 I have decided to join the vector core team on the weekly meeting.
+
 Reading the first chapter of the textbook and grab the basic idea of the GPU.
 
 ## learning and key concept
@@ -31,5 +32,24 @@ Reading the first chapter of the textbook and grab the basic idea of the GPU.
 <div align="center">
 <img width="400" height="484" alt="屏幕截图 2025-08-30 230830" src="https://github.com/user-attachments/assets/a5327058-846a-4118-a405-2c714cdefeca" />
 </div>
+
+10. Realtionship on multi threads and the performance. It is a trade off of multi core (CPU) and multi threads (GPU). In the multicore(MC)area, since we have a small number of threads, the space for fast cache is available. In the valley area, due to lack of cache space, the memory is crowded which requires more time for response, leading to ineffectiveness. When comes to the multi thread(MT)area, the efficient use of the threads eliminate the latency(waiting time) due to the lack of cache space memory, where parallelism is working.
+<div align="center">
+<img width="400" height="344" alt="屏幕截图 2025-08-30 232126" src="https://github.com/user-attachments/assets/776538ea-a4da-45f0-8627-4033d04982a4" />
+</div>
+
+11.Thinking on existence of L2. According to the graph, we find that the high cost for 32 bit DRAM. Instead of frequently accessing DRAM, we can have a state where L1 inside the core can be more communicated with the memory partition(L2 cache), which saves power.
+<div align="center">
+<img width="400" height="257" alt="屏幕截图 2025-08-30 232722" src="https://github.com/user-attachments/assets/5435418a-d5e6-4ffd-8384-2039a2555096" />
+</div>
+
+## Questions
+How do we solve the cache-coherence problem when using the integrated architecture?
+
+## Plan
+1. Continue on reading the textbook and self studying the material.
+2. Start getting the preliminary insight to core vector that are implemented in the project. 
+
+
 
 
