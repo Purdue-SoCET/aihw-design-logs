@@ -1,3 +1,6 @@
+## State
+I am stuck with the code logic, RTL and FSM for the convolution simulator. I would really appreciate some help (sit together for max 3 hours and nail everything down).
+
 ## Routing Algorithm - Partial Sum
 
 A. How to detect this deterministically  
@@ -125,3 +128,6 @@ Step 6 – Crossbar Usage
           if acc_fifo[(m,p,q)].count == R*S*C:
               scratchpad[m,p,q] = sum(acc_fifo[(m,p,q)])
               acc_fifo[(m,p,q)].clear()
+
+## Next Steps
+Need to come up with RTL and FSM ASAP. Figure out which way to use, FIFO or SCRATCHPAD? Because things keep conflicting while talking to different people. I need me, Malcolm, Akshath to come to a conclusion :(
