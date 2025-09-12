@@ -1,0 +1,10 @@
+I'm not stuck with anything. 
+
+Progress 
+-Progessing on understanding PPCI's backend and fronend support
+-finding ways to implement changes to PPCI front and backend
+-implementing new keywords in parser 
+
+
+Next Step
+-implementing support for basic instructions 
