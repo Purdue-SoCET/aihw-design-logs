@@ -4,6 +4,7 @@ Progress:
 - Reverse engineering of the swizzling's algorithm:
 NUM_BANKS = 32
 
+```
 def _row_lane(abs_row: int, cols: int):
     # Take the 5 lower bits of the row index
     low5 = abs_row & (NUM_BANKS - 1)  
@@ -43,6 +44,7 @@ def _row_lane(abs_row: int, cols: int):
     - and the row index’s low bits.
     
     So each row distributes its columns differently across banks. That means even if all warps access the same column pattern, their accesses land on different banks row-to-row, reducing conflicts and improving throughput.
+```
 
 Next Steps:
 
