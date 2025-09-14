@@ -46,6 +46,57 @@ def _row_lane(abs_row: int, cols: int):
     So each row distributes its columns differently across banks. That means even if all warps access the same column pattern, their accesses land on different banks row-to-row, reducing conflicts and improving throughput.
 ```
 
+- Assuming Scratchpad is:
+
+    - Organized as NUM_BANKS separate RAMs
+
+    - Each bank gets its own we and addr
+
+    - Typically multi-ported or time-multiplexed to support R/W simultaneously
+
+- Too early RTL signals I may need:
+
+    - data_in [DW-1:0] – data from SA
+
+    - addr_in [AW-1:0] – physical address (linear or bank,row,col)
+
+    - we_in – write enable
+
+    - handshakes 
+
+- Too early RTL signals I may be sending out from the frontend:
+
+    - addr_req [AW-1:0] – logical (row, col) request from systolic frontend
+
+    - addr_bank [log2(NUM_BANKS)-1:0] – bank index chosen by inverse swizzle
+
+    - addr_slot – row/col inside the bank
+
+    - data_out [LANES*DW-1:0] – wide vector, one word per systolic lane
+
+    - valid_out – asserts when data_out is correctly un-swizzled
+
+    - ready_out – SA can accept next word(s)
+
+- Control signals:
+
+    - start / done – tile-level handshakes.
+
+    - config_stride, config_shape, config_swizzle – how to interpret logical $$\rightarrow$$ physical mapping.
+
+    - stall_in – SA can back-pressure the frontend
+
+    - busy – scratchpad actively serving requests
+
+Reminder:
+
+swizzled_bank = lane ^ (row & (NUM_BANKS-1))
+
+$$\rightarrow$$
+
+lane = swizzled_bank ^ (row & (NUM_BANKS-1))
+
+
 Next Steps:
 
 - RTL Diagram complete by Sunday
