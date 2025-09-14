@@ -56,27 +56,35 @@ def _row_lane(abs_row: int, cols: int):
 
 - Too early RTL signals I may need:
 
-    - data_in [DW-1:0] – data from SA
+    - data_in [DW-1:0] – ~~data from SA~~ Julio
 
-    - addr_in [AW-1:0] – physical address (linear or bank,row,col)
+    - addr_in [AW-1:0] – ~~physical address (linear or bank,row,col)~~
 
-    - we_in – write enable
+    - we_in – ~~write enable~~
+
+    - row_id
+
+    - col_id
+
+    - row_or_col
+
+    - base
 
     - handshakes 
 
 - Too early RTL signals I may be sending out from the frontend:
 
-    - addr_req [AW-1:0] – logical (row, col) request from systolic frontend
+    - ~~addr_req [AW-1:0] – logical (row, col) request from systolic frontend~~
 
-    - addr_bank [log2(NUM_BANKS)-1:0] – bank index chosen by inverse swizzle
+    - ~~addr_bank [log2(NUM_BANKS)-1:0] – bank index chosen by inverse swizzle~~ $$\rightarrow$$ SA already knows what it wants
 
-    - addr_slot – row/col inside the bank
+    - ~~addr_slot – row/col inside the bank~~
 
     - data_out [LANES*DW-1:0] – wide vector, one word per systolic lane
 
-    - valid_out – asserts when data_out is correctly un-swizzled
+    - ~~valid_out – asserts when data_out is correctly un-swizzled~~
 
-    - ready_out – SA can accept next word(s)
+    - ~~ready_out – SA can accept next word(s)~~
 
 - Control signals:
 
@@ -96,8 +104,36 @@ $$\rightarrow$$
 
 lane = swizzled_bank ^ (row & (NUM_BANKS-1))
 
+Diagrams:
+
+https://app.diagrams.net/#G1ElCZMM-KjPGufnR3GiQcNenLo1k3HUEb#%7B%22pageId%22%3A%22Tro5ICBytG0uPzhBu2ZE%22%7D
+
+- Not so early RTL input signals
+
+    - For each vec_if and sys_if:
+
+        - [14:0] start_addr,
+        - [4:0] row_id,
+        - [4:0] col_id,
+        - [4:0] row_len,
+        - [4:0] col_len,
+        - isCol
+
+
+- Not so early RTL output signals
+
+    - slot_mask
+    - shift_mask
+    - stall_sys
+    - done_sys
+    - done_vec
+    - [31:0] arr_sys
+    - [31:0] arr_vec
+      - Data might be padded if *_len $$\neq$$
+
 
 Next Steps:
 
 - RTL Diagram complete by Sunday
     - Data I'd need from the Systolic Array
+- Start working on microarchitecture of front-ends
