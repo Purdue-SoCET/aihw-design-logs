@@ -23,6 +23,18 @@ Progress:
   - To Crossbar:
     - shift_mask
 
+(09/21)
+- Attended Sunday meeting
+- Changed some stuff at the diagrams, more specifically related to the communication with the SRAM controller
+- Long story short:
+  - Requests are sent from Vector Core (VC) and Systolic Array (SA) to Scratchpad (SC), arbitrated by frontend (SC.FE)
+  - Whithin Scratchpad, arbiter decides which request to take. VC > SA
+    - If both asserted, stall SA
+  - Request handled by a Service FSM
+    - Handles logic related to issue requests to SRAM and finish requests when receiving RESPONSE DONE.
+- TODO:
+  - Adjustments and finish microarchitecture whithin frontend (on my end, Service FSM)
+  - Use signals used in pkg interface provided by Akshath in diagrams
 Next steps:
-- Figure out inner modules
+- Figure out inner modules [done?]
 - Start Working on RTL code
