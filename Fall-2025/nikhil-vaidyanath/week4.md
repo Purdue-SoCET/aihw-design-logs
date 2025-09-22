@@ -1,6 +1,6 @@
 ## NOTE: I was assigned to AI HW and the compute controller at the end of Week 3/beginning of Week 4 making this my first design log.
 
-## State: I am not stuck with anything, don't need help right now. Note
+## State: I am not stuck with anything, don't need help right now.
 
 ## Progress
 On the Sunday meeting, I was introduced to the project and familiarized myself with resources to understand how GEMM is used in a convolution. On Monday I met with Saandiya, Sooraj, and Jing to discuss some of the problems we need to solve, and then some solutions for tiling the convolution within the systolic array. On Tuesday I attended the Scratchpad meeting and learned more about their progress and design to use in the compute controller context. On Thursday, I met with Saandiya and Malcolm where we discussed the current issues with the Python/Jupyter Notebook simulator and we discussed some strategies to fix the systolic array model, as that was causing erroneous results. I was later assigned the task of getting the simulator to work with the existing systolic array model.
