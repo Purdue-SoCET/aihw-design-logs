@@ -14,6 +14,7 @@ Read up on GEMM controller and its interfacing with the scratchpad.
 
 
 Next week:
+
 RTL for modifying the current systolic array controller to the GEMM controller.
 
 Architecture of the Ex stage ion instruction pipeline.
