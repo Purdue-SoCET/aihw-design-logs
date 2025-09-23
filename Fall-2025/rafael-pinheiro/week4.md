@@ -3,6 +3,7 @@ State: Quite overwhelmed with amount of information, might need help in near fut
 Progress:
 (09/16)
 - Top level, interfaces and communication with vector core, systolic array, SRAM controller and crossbar defined
+- https://app.diagrams.net/#G1ElCZMM-KjPGufnR3GiQcNenLo1k3HUEb#%7B%22pageId%22%3A%22Tro5ICBytG0uPzhBu2ZE%22%7D
 - {vec, sys}_if
   - Inputs:
     - start_addr
@@ -32,6 +33,9 @@ Progress:
     - If both asserted, stall SA
   - Request handled by a Service FSM
     - Handles logic related to issue requests to SRAM and finish requests when receiving RESPONSE DONE.
+  - Frontend only communicates w/ VC, SA and SRAM controller
+    - Not XBAR!
+  - https://app.diagrams.net/#G1ElCZMM-KjPGufnR3GiQcNenLo1k3HUEb#%7B%22pageId%22%3A%22inImMLElQ-h5i9CkQv97%22%7D
 - TODO:
   - Adjustments and finish microarchitecture whithin frontend (on my end, Service FSM)
   - Use signals used in pkg interface provided by Akshath in diagrams
