@@ -8,4 +8,4 @@
 - The simulator doesnt work with my implementation of an actual Systolic array, so we narrowed down the error to the implementation of the Systolic Array itself.
 - So, I am going to try and use the SA simulator students made last semester and hopefully that works, and this is where I might get stuck.
 - Planning to finish this by Sunday meeting, so that we can implement the RTL during the team meeting.
-- The current simulator is updated in my github.
+- The current simulator is updated in my github. https://github.com/Purdue-SoCET/tensor-core/blob/tensor_compute_accelerator_saandiya/tmp/TCA_tiled_sim.ipynb 
