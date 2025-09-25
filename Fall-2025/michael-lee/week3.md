@@ -1,7 +1,8 @@
 # Week 3
-State: I dont't need help with anything
+## State: 
+-I dont't need help with anything
 
-Progress: 
+## Progress: 
 - Scheduler team meeting
 - Discussed stages of scheduler and assigned parts to members. Responsible for scoreboard. 
 - Reading existing scheduler code and understanding scoreboard
@@ -14,3 +15,6 @@ https://drive.google.com/file/d/1M_-irWdD2tf2M9vajaq4RTc4f5l0vSWu/view?usp=shari
 - Hazard checking, freezing, branch speculation, jump sections of dispatch code
 - Begin Senior Design Idea Pitch
 - PD Plan and Welcome Lecture completed
+
+## Next Steps
+- Continue understanding and diagramming existing architecture
