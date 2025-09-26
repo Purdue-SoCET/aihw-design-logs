@@ -5,6 +5,9 @@ Progress: Studied the MIT notes.
 
 < insert more progress here > if asked to submit notes, then submit the notes here. 
 
+Next Step: meet with the team and work on the project
+
+
 # Notes 
 https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/
 
