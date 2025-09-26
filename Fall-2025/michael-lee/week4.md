@@ -15,4 +15,4 @@ I dont't need help with anything
 - Will continue understanding new ISA with given ISA card
 
 ## Next Steps:
-- Redo diagramming accounting for new changes to the ISA viz packetized instructions
+- Redo diagramming accounting for new changes to the ISA via packetized instructions
