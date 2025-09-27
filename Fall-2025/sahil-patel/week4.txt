@@ -1,1 +1,10 @@
+I'm not stuck with anything. 
 
+Progress 
+-understand the new ISA and ways to implement support
+-plan out how to implement the new architecture 
+-generate inline asm from custom instructions.
+
+
+Next Step
+-implement the architecture files.  
