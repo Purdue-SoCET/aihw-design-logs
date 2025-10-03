@@ -1,0 +1,11 @@
+I'm not stuck with anything. 
+
+Progress 
+-Progessing on understanding PPCI's backend and fronend support
+-Implement support for basic theta function 
+-implementing new keywords in parser 
+-implemented support for 
+
+
+Next Step
+-implement instructions for basic theta support 

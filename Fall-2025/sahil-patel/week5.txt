@@ -1,0 +1,10 @@
+I'm not stuck with anything. 
+
+Progress 
+-implemented tokens and simple architecture 
+-focused on scalar operations first such as add, sub
+-created custom scalar instructions for our new architecture.  
+
+
+Next Step
+-implementing support load and store in architecture which required memory implementation. 
