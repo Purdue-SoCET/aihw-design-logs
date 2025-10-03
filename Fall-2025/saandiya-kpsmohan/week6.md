@@ -14,6 +14,9 @@ I am not stuck.
 - Me and Nikhil met with Vinay to go over the design and confirmed its compatible with the current systolic array.
 - We planned to use valid-ready handshake protocol for our design because it is what used in industry.
 - Upon discussing with Vinay, systolic array needs to be modified to add a valid/ready signal for psum outputs.
+- Me, Jing and Nikhil also decided to load weights into the systolic array using the vector core.
+- Hence, in the stsys.st instruction, the imm field corresponds to loading the weight: 1 - weight, 0 - inputs.
+- We also have a fifo to keep track of the destination registers of the psum. This will be popped everytime psum is being sent to the WB buffer so that it knows which register to store the result in.
 
 ## Next Steps
 - Planning to get RTL verfied on Sunday meeting and start coding GSAU.
