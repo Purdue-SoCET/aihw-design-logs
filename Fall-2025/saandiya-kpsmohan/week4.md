@@ -38,6 +38,10 @@ Psums will be added column by column in the systolic array corresponding to the 
 Current result:
 ![IMG_7443](https://github.com/user-attachments/assets/9a7c62c6-b27f-4984-979b-5356892f7610)
 
+## TCA interface file
+I made the TCA interface file with scratchpad, systolic array, and scheduler.
+https://github.com/Purdue-SoCET/tensor-core/blob/tensor_compute_accelerator_saandiya/src/include/tca_if.vh
+
 ## Design Choice
 We went with this design flow because this is how a typical convolution is done even on the software level. Now we have a unit in the hardware to do convolutions instead of decoding the instructions every single time before carrying out 1 convolution operation. This also utilizes the existing systolic array. Obviously, there are some limitations where the utilization of the systolic array itself depends on the number of output channels. The more the output channel size, the better the utilization of a 32x32 systolic array. I gained a clearer understanding of how implicit GEMM maps to hardware and how to structure im2col efficiently for SA utilization.
 
