@@ -1,6 +1,10 @@
 ## State  
 I am not stuck with anything as of right now.
 
+## Evidence of Progress:
+![IMG_7330](https://github.com/user-attachments/assets/7dcdc7a3-a1b1-477a-9612-22cf87e44eb0)
+![IMG_7331](https://github.com/user-attachments/assets/e58fb97f-1b49-42ff-9f77-38d75e82691e)
+
 ## Progress
 I attended Systolic Array Meeting led by Malcolm:
 1. Met with new teammates, I will be working with Myles for convolution controller.
