@@ -14,7 +14,9 @@ I attended Systolic Array Meeting led by Malcolm:
 I attended the Scratchpad Meeting led by Akshath and Vinay:
 1. Got to know the entire finalized Scratchpad Architecture, the subcomponents, why we need a Scratchpad and how does it work on a very high level.
 2. I will be working on Tensor Compute Accelerator with Myles, we need to figure out an FSM and RTL by September.
-3. Got to know timeline of my work that I will be doing this semester.
+3. Got to know timeline of my work that I will be doing this semester.  
+
+This week, I reviewed the old FSM and identified issues in matrix index masking and shifting logic, which will inform our redesign of TCA.
 
 ## Notes
 FSM and RTL made last semester doesn't completely work. We need to figure out masking and shifting of row and column indices of the matrix within the TCA which consist of both GEMM and Convolution Controller.
@@ -23,4 +25,5 @@ There is already an existing Python simulator, we need to edit it to make sure o
 
 ## Next Steps
 I will be working on the new logic and discuss some ideas with Myles and nail it down during the Sunday team meeting.
+Next week, I will develop a draft FSM diagram for the TCA convolution controller and verify its compatibility with the Scratchpad interface.
 
