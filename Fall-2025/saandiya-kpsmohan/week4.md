@@ -39,7 +39,7 @@ Current result:
 ![IMG_7443](https://github.com/user-attachments/assets/9a7c62c6-b27f-4984-979b-5356892f7610)
 
 ## Design Choice
-We went with this design flow because this is how a typical convolution is done even on the software level. Now we have a unit in the hardware to do convolutions instead of decoding the instructions every single time before carrying out 1 convolution operation. This also utilizes the existing systolic array. Obviously, there are some limitations where the utilization of the systolic array itself depends on the number of output channels. The more the output channel size, the better the utilization of a 32x32 systolic array.
+We went with this design flow because this is how a typical convolution is done even on the software level. Now we have a unit in the hardware to do convolutions instead of decoding the instructions every single time before carrying out 1 convolution operation. This also utilizes the existing systolic array. Obviously, there are some limitations where the utilization of the systolic array itself depends on the number of output channels. The more the output channel size, the better the utilization of a 32x32 systolic array. I gained a clearer understanding of how implicit GEMM maps to hardware and how to structure im2col efficiently for SA utilization.
 
 ## Next Steps
 - I am going to try and use the SA simulator students made last semester and hopefully that works.
