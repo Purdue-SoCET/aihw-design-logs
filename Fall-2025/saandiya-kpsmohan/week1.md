@@ -5,7 +5,12 @@ These are progress made from first semester senior design:
 RTL: https://app.diagrams.net/?src=about#G1yjtGIwYba1tQ_oEZ2nP-iKsl-h5MZtOR#%7B%22pageId%22%3A%229D6ffl-pBdOOQ0Yu_FEU%22%7D 
 Simulator: https://github.com/Purdue-SoCET/tensor-core/blob/systolic_array_cache/tmp/conv_on_systolic_array_2d/Custom_Works.ipynb
 
-Last semester we got a basic idea on how to convert Convolution operations to GEMM operations to fully utilize the existing Systolic Array, supplemented with newly built Scratchpad that is being worked by Akshath. We came up with a unit called Tensor Compute Accelerator (TCA), which has both GEMM and Convolution controllers and this interacts between Systolic Array and Scratchpad.
+Last semester we got a basic idea on how to convert Convolution operations to GEMM operations to fully utilize the existing Systolic Array, supplemented with newly built Scratchpad that is being worked by Akshath. We came up with a unit called Tensor Compute Accelerator (TCA), which has both GEMM and Convolution controllers and this interacts between Systolic Array and Scratchpad. The idea is to perform im2col on the exisiting matrix and multiplying it with a kernel matrix which is flattened.
+Readings: https://docs.nvidia.com/deeplearning/performance/dl-performance-convolutional/index.html  
+From this we learnt about:  
+1. All the parameters involved in convolution, including dilations and how they affect convolution.
+2. Our method is called an implicit GEMM method.
+3. It is important to reiterate that matrices of these sizes are not stored in memory; they are an abstraction to help explain the computation. The "repeated" values are not literally copied, and wasteful reads from memory are avoided. 
 
 ## Plan:
 To implement TCA in System Verilog and synthesize the module.  
