@@ -71,7 +71,7 @@ Get output in vdst at a certain offset.
 ![Screenshot 2025-10-06 at 7 09 01 PM](https://github.com/user-attachments/assets/1baa6827-cb8f-44d5-a9c0-35dad01c7e42)
 
 - Had a pre design review on Friday (9/26) with all team leads which went well.
-- Timmy raised a question if we can construct im2col by channels instead of kernels - which I will be looking into.
+- Timmy raised a question if we can construct im2col by channels instead of kernels - which the answer is that if there are different strides then the FSM for this becomes really complicated.
 
 ## Future Plans
 - Will work on the systolic array interface
