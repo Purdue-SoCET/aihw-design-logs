@@ -1,8 +1,8 @@
 ## State: I am not stuck.
 
 ## Progress
-- On Monday, me, Sooraj, Nikhil, Jing and Malcolm sat together and discussed the whole flow of convolution from tiling into the Scratchpad until the end of the convolution.   
-- On Tuesday, I met up with Jing and Malcolm again to further understand this new design and I started implementing this in a Python simulator.  
+- On Monday (9/15/25), me, Sooraj, Nikhil, Jing and Malcolm sat together and discussed the whole flow of convolution from tiling into the Scratchpad until the end of the convolution.   
+- On Tuesday (9/16/25), I met up with Jing and Malcolm again to further understand this new design and I started implementing this in a Python simulator.  
 - The new design, idea, requirements are documented in this google docs: https://docs.google.com/document/d/1cPfQhlDqv8aA0h1p-Eb_DB3sLzMEvE1i8g09MyHWf1w/edit?usp=sharing
 
 ## Evidence of progress
