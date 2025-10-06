@@ -78,3 +78,6 @@ Get output in vdst at a certain offset.
 - Check staggering inputs created in the vector core itself - would that be better
     - answer is no because we are technically buffering the buffer when systolic array has its own input fifo itself, we need to utilize that
 - New buffers before/after the sys arr
+
+## Reflection
+This week I gained a clearer understanding of how the Vector Core can efficiently handle convolution operations using the existing registers, eliminating the need for a dedicated TCA. I also learned the tradeoffs between different input mapping strategies and how instruction-level design affects SA utilization.
