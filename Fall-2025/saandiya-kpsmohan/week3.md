@@ -5,6 +5,10 @@ I am stuck with the code logic, RTL and FSM for the convolution simulator. I wou
 Working on the python simulator to figure out a partial sum routing algorithm. We need this because when using the systolic array to do convolution, some partial sums are useless, and only some psums needs to be routed back into the scratchpad.
 https://github.com/Purdue-SoCET/tensor-core/blob/systolic_array_cache/tmp/conv_on_systolic_array_2d/Saandiya_customWorks
 
+Sooraj also explained about how we can map values from a buffer to input fifos of the Systolic array. This is helpful because it is a more straightforward method compared to our current flow. The only problem is that it will create a lot of fan outs, and confusing wires (basically hard to code). The image corresponds to that:
+![IMG_7385](https://github.com/user-attachments/assets/f662b024-10c2-4e25-ae8c-bb4dcfb481b6)
+
+
 ## Routing Algorithm - Partial Sum
 
 A. How to detect this deterministically  
