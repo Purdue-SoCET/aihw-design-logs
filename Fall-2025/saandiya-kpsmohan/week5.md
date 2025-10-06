@@ -74,6 +74,7 @@ Get output in vdst at a certain offset.
 - Timmy raised a question if we can construct im2col by channels instead of kernels - which the answer is that if there are different strides then the FSM for this becomes really complicated.
 
 ## Future Plans
-- Will work on the systolic array interface
+- Will work on the systolic array interface with vector core
 - Check staggering inputs created in the vector core itself - would that be better
-- Buffer before/after the sys arr
+    - answer is no because we are technically buffering the buffer when systolic array has its own input fifo itself, we need to utilize that
+- New buffers before/after the sys arr
