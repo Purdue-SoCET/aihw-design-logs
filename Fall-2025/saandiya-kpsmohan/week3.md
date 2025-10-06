@@ -1,6 +1,10 @@
 ## State
 I am stuck with the code logic, RTL and FSM for the convolution simulator. I would really appreciate some help (sit together for max 3 hours and nail everything down).
 
+## Evidence of Progress:
+Working on the python simulator to figure out a partial sum routing algorithm. We need this because when using the systolic array to do convolution, some partial sums are useless, and only some psums needs to be routed back into the scratchpad.
+https://github.com/Purdue-SoCET/tensor-core/blob/systolic_array_cache/tmp/conv_on_systolic_array_2d/Saandiya_customWorks
+
 ## Routing Algorithm - Partial Sum
 
 A. How to detect this deterministically  
