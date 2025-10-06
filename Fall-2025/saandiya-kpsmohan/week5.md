@@ -5,6 +5,11 @@ I am not stuck.
 - On Sunday Meeting (9/21/25), Systolic Array team had a discussion with Timmy to go over how inputs, kernels and psums will flow in the systolic array and how the final output will look like.
 ![IMG_7455](https://github.com/user-attachments/assets/30315e99-410a-4e7f-abad-d01eb879ce29)
 As we can see here, the output shape BEFORE transposing in systolic array occurs is HxWxK, and AFTER transposing occurs the shape is KxHxW. This output shape is not very useful for us meaning, we can't just use this result for the next operation such as max pooling or softmax. The shape needs to be redefined in the software before doing these operations.
+- Next, I told Sooraj that I cant get the Python simulator to work with trying to implement the actual systolic array itself. So he gave a suggestion to use matmul instead and restrict the size to 32.
+- I did that, and the output matches the expected output.
+- Final version of simulator: https://github.com/Purdue-SoCET/tensor-core/blob/tensor_compute_accelerator_saandiya/tmp/TCA_tiled_sim.ipynb
+![Screenshot 2025-10-06 at 7 07 59 PM](https://github.com/user-attachments/assets/3fafcb53-c590-4c24-9434-45f4c13c994a)
+
 - On 9/23/25, during the Systolic Array and Scratchpad meeting, we went over the new TCA RTL design: https://app.diagrams.net/?src=about#G1yjtGIwYba1tQ_oEZ2nP-iKsl-h5MZtOR#%7B%22pageId%22%3A%22Q9zmwPF7jkmAEOsmvTRS%22%7D
 - During this meeting as well, we were discussing how to map values into an external buffer/fifo from the toeplitz matrix before sending it into the systolic array in which there wasn't a clear solution other than requesting values from scratchpad consecutively which is a lot of cycles and not utilizing the values we already have in the TCA. This led to SoorajGPT wanting to find a solution from a different angle, for example: input stationary systolic array.
 ![IMG_7457](https://github.com/user-attachments/assets/1158b311-d0fd-4572-948c-3ad14f83530d)
@@ -37,7 +42,8 @@ Best and worst case latencies:
 How Toeplitz is formed and instructions for that:
 ![IMG_7466_2](https://github.com/user-attachments/assets/9de9846b-04fa-4e6e-ab4d-57aa0782e138)
 
-- We also came up with 2 new instructions to carry out shift operations to contruct the Toeplitz.
+- We also came up with 2 new instructions to carry out shift operations to contruct the Toeplitz added to Atalla ISA sheet: https://docs.google.com/spreadsheets/d/1yDJ_oH0EXGIE4-4wVcwTeaw1Bg1vpoUSIkgTK3qDw_w/edit?usp=sharing
+  
 1. New Crossbar ISA (6 bits)
 Shift left/right
 Addition of left_right bit and 5 bits for shift amount - total 6 bits added
@@ -61,6 +67,11 @@ Get output in vdst at a certain offset.
 8. Sent back to scratchpad.
 9. Repeat for all kernels / tiles.
 
+## Week Plan:
+![Screenshot 2025-10-06 at 7 09 01 PM](https://github.com/user-attachments/assets/1baa6827-cb8f-44d5-a9c0-35dad01c7e42)
+
+- Had a pre design review on Friday (9/26) with all team leads which went well.
+- Timmy raised a question if we can construct im2col by channels instead of kernels - which I will be looking into.
 
 ## Future Plans
 - Will work on the systolic array interface
