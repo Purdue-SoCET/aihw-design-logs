@@ -42,6 +42,11 @@ Current result:
 I made the TCA interface file with scratchpad, systolic array, and scheduler.
 https://github.com/Purdue-SoCET/tensor-core/blob/tensor_compute_accelerator_saandiya/src/include/tca_if.vh
 
+## Coordinating with Scratchpad and systolic array
+I met with Akshath (SP) and Vinay (SA) to ask these questions for the design and got answers.
+![Screenshot 2025-10-06 at 7 01 03 PM](https://github.com/user-attachments/assets/d37aa40c-003f-4f2e-807f-27e964606df4)
+
+
 ## Design Choice
 We went with this design flow because this is how a typical convolution is done even on the software level. Now we have a unit in the hardware to do convolutions instead of decoding the instructions every single time before carrying out 1 convolution operation. This also utilizes the existing systolic array. Obviously, there are some limitations where the utilization of the systolic array itself depends on the number of output channels. The more the output channel size, the better the utilization of a 32x32 systolic array. I gained a clearer understanding of how implicit GEMM maps to hardware and how to structure im2col efficiently for SA utilization.
 
