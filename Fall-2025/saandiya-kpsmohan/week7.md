@@ -57,20 +57,20 @@ Discussion: https://docs.google.com/document/d/1wkPebjAmX3TWlar8HtL-GTniY8Vg29cW
 ## 2. GSAU Interface
 ![Screenshot 2025-10-07 at 2 21 18 PM](https://github.com/user-attachments/assets/b87b450e-a23e-429a-b34f-79e081dcd2f9)
 
-latched signals
-scoreboard
+latched signals  
+scoreboard  
 vdst[8]
 valid  
 weights
 
-veggie
+veggie  
 vegg.n_vdata [512]
 Vegg.vdata [512]
 veggn_valid 
 vegg.valid 
 
-Veggie File interface (by Joseph): https://github.com/Purdue-SoCET/tensor-core/blob/jghanem/vector-core/src/include/vector_if.vh 
-GSAU Interface: https://github.com/Purdue-SoCET/tensor-core/blob/tensor_compute_accelerator_saandiya/src/include/gsau_if.vh
+Veggie File interface (by Joseph): https://github.com/Purdue-SoCET/tensor-core/blob/jghanem/vector-core/src/include/vector_if.vh   
+GSAU Interface: https://github.com/Purdue-SoCET/tensor-core/blob/tensor_compute_accelerator_saandiya/src/include/gsau_if.vh  
 
 ## 3. Valid Ready Handshake Reading
 ![Screenshot 2025-10-07 at 2 23 28 PM](https://github.com/user-attachments/assets/be9855b0-6ff7-46cb-ac5d-b1e654525502)
