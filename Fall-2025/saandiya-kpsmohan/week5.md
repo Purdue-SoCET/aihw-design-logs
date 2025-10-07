@@ -15,6 +15,9 @@ As we can see here, the output shape BEFORE transposing in systolic array occurs
 ![IMG_7457](https://github.com/user-attachments/assets/1158b311-d0fd-4572-948c-3ad14f83530d)
 
 - And then on midnight 9/23/25 Sooraj proposed to move the convolution/gemm operations to vector core itself which I will explain why below. This sparked some discussions in discord to see what is the best way to move.
+- The MESSAGE :
+  ```GeMM is no longer 1 insn -- a GeMM is a vector mat mult, scheduled by the vector core. (If have a 32x32 times 32x32 multiplication, i have to schedule each row/col separately, weight loading is independent). What you do is you make the systolic an offload fed by the vector reg file as well. You fetch whatever values you need over multiple cycles (non-coalesced loads) into 1 vector register. But the next time you do this -- you can use the vector core network or whatever to make a shift happen for the reused values and only fetch the new values you need from scratchpad. so ideally -- this guarantees left right reuse (but not up down reuse unless you can keep enoguh locality for that as well). You construct the toeplitz on the fly in the reg file and every gemm now is a loop. this also means that every matrix communication to the scratchpad goes through the vector core -- removes a whole bunch of other stuff that is irritating. 256322 = 16KB for the reg file -- its already 1 read of 1 write port unless you bank the shit out of it. ```
+
 - During Vector core meeting (9/24/25) Sooraj, Jing, and others decided to move the convolution operation, and all other operations of Systolic Array through the Vector Core itself. This means all GEMM, Conv, weight loading (all systolic array operations) goes through vector core. The scratchpad DOES NOT interact with the systolic array anymore.
 - BUT the design flow for these operations still REMAINS THE SAME. Its just that there is no TCA anymore. Instead of TCA, we use the Vector Core.
 - The reason behind this is that, desiging a separate TCA unit will take area on the chip, while the vector already has a vector register file that has 4 512 bits banks space that can be used to carry out convolution and gemms.
@@ -73,11 +76,27 @@ Get output in vdst at a certain offset.
 - Had a pre design review on Friday (9/26) with all team leads which went well.
 - Timmy raised a question if we can construct im2col by channels instead of kernels - which the answer is that if there are different strides then the FSM for this becomes really complicated.
 
+## Overview of Architecture flow (Vector Core)
+1. Shifting network - crossbar/benez network -> direction, location (to construct toeplitz)
+2. Sys arr interface with vector core -> how to schedule inputs
+3. Writeback to veggie file after shifting
+4. ISA instructions needed for shifting: shift + pad
+5. Kernels go from scpad -> weight loading controller -> sys arr
+6. Psum accumulation happens in the vector core
+7. Sys arr idea stays the same -> 1 kernel per column
+
+The Vector Core banks can be one of these 2:  
+4 bank -> 1 bank - 32x64  
+2 bank -> 1 bank - 32x128  
+
 ## Future Plans
 - Will work on the systolic array interface with vector core
 - Check staggering inputs created in the vector core itself - would that be better
     - answer is no because we are technically buffering the buffer when systolic array has its own input fifo itself, we need to utilize that
 - New buffers before/after the sys arr
+- We also need to keep track of vdst of corresponding outputs.
+![Screenshot 2025-10-06 at 9 30 42 PM](https://github.com/user-attachments/assets/6ff0791b-a5cd-4e6e-b3d4-ea98fe5aa85a)
+
 
 ## Reflection
 This week I gained a clearer understanding of how the Vector Core can efficiently handle convolution operations using the existing registers, eliminating the need for a dedicated TCA. I also learned the tradeoffs between different input mapping strategies and how instruction-level design affects SA utilization.
