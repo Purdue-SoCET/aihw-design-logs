@@ -1,6 +1,16 @@
 ## State
 I am stuck with the code logic, RTL and FSM for the convolution simulator. I would really appreciate some help (sit together for max 3 hours and nail everything down).
 
+## Evidence of Progress:
+Working on the python simulator to figure out a partial sum routing algorithm. We need this because when using the systolic array to do convolution, some partial sums are useless, and only some psums needs to be routed back into the scratchpad.
+https://github.com/Purdue-SoCET/tensor-core/blob/systolic_array_cache/tmp/conv_on_systolic_array_2d/Saandiya_customWorks
+
+Sooraj also explained about how we can map values from a buffer to input fifos of the Systolic array. This is helpful because it is a more straightforward method compared to our current flow. The only problem is that it will create a lot of fan outs, and confusing wires (basically hard to code). The image corresponds to that:
+![IMG_7385](https://github.com/user-attachments/assets/f662b024-10c2-4e25-ae8c-bb4dcfb481b6)
+
+## Progress
+This week, I am trying to implement a prototype Python function that detects final partial sums and routes them into destination FIFOs. But it is not as straightforward, as the math behind this is a bit hard and it cannot be implemented in a hardware without using bunch of adders and multipliers. 
+
 ## Routing Algorithm - Partial Sum
 
 A. How to detect this deterministically  
@@ -131,3 +141,4 @@ Step 6 – Crossbar Usage
 
 ## Next Steps
 Need to come up with RTL and FSM ASAP. Figure out which way to use, FIFO or SCRATCHPAD? Because things keep conflicting while talking to different people. I need me, Malcolm, Akshath to come to a conclusion :(
+After we finalize the dataflow approach, I’ll begin drafting the FSM state diagram and write RTL for the PSUM routing block.
