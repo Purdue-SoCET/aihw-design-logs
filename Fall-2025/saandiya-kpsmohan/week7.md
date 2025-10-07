@@ -15,7 +15,7 @@ We sat down with the UVM team to come up with a test plan and go over data flow 
 - psum_in here refers to the previous tile's psum_out which we can just be added to the current tile's psum_out.
 - We load both of them at the same time to save extra 32 cycles.
 - Valid/ready signals in sys arr
-  - Inputs : send values when (ready && fifo_has_space)
+  - Inputs : send values when (valid && fifo_has_space)
   - Weights: share the same port but theres no FIFO so you can load whenever you want
   - Psum: should be a signal
 - Changes in systolic array (informed Vinay)
@@ -49,8 +49,36 @@ There are some works that should be done aka bufferings to be added for valid re
 After finishing hardware coding, we should also do some python script that outputs the set of instruction needed to carry out convolution for any arbitary sizes. This is for compiler folks.
 
 ## Week's Progress
-## 1. GSAU Interface
-## 2. GSAU Source Code
+## 1. UVM Team Discussion
+Discussion: https://docs.google.com/document/d/1wkPebjAmX3TWlar8HtL-GTniY8Vg29cWxahkBAUrI-0/edit?usp=sharing
+![Screenshot 2025-10-07 at 2 20 59 PM](https://github.com/user-attachments/assets/34a47cb8-5475-4d22-9785-70081ce39d75)
+![IMG_7535](https://github.com/user-attachments/assets/18ff51d2-0d71-4d54-b738-b8925a7d14cd)
+
+## 2. GSAU Interface
+![Screenshot 2025-10-07 at 2 21 18 PM](https://github.com/user-attachments/assets/b87b450e-a23e-429a-b34f-79e081dcd2f9)
+
+latched signals
+scoreboard
+vdst[8]
+valid  
+weights
+
+veggie
+vegg.n_vdata [512]
+Vegg.vdata [512]
+veggn_valid 
+vegg.valid 
+
+Veggie File interface (by Joseph): https://github.com/Purdue-SoCET/tensor-core/blob/jghanem/vector-core/src/include/vector_if.vh 
+GSAU Interface: https://github.com/Purdue-SoCET/tensor-core/blob/tensor_compute_accelerator_saandiya/src/include/gsau_if.vh
+
+## 3. Valid Ready Handshake Reading
+![Screenshot 2025-10-07 at 2 23 28 PM](https://github.com/user-attachments/assets/be9855b0-6ff7-46cb-ac5d-b1e654525502)
+![Screenshot 2025-10-07 at 2 23 55 PM](https://github.com/user-attachments/assets/0cb2cc83-67ad-4960-a390-f623562efd64)
+
+This handshake is useful for stalling without losing any data, pipeline friendly and doesn't need any other flags.
+
+## 4. GSAU Source Code
 
 # Future Plan
 - Testbench source code with small test cases and make sure everything works as expected.
