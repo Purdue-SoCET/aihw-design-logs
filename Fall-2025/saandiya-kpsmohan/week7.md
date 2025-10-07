@@ -48,8 +48,8 @@ There are some works that should be done aka bufferings to be added for valid re
 ## 6. Advice from Jing
 After finishing hardware coding, we should also do some python script that outputs the set of instruction needed to carry out convolution for any arbitary sizes. This is for compiler folks.
 
-## Week's Progress
-## 1. UVM Team Discussion
+# Week's Progress
+## 1. UVM Team Discussion (10/7/25)
 Discussion: https://docs.google.com/document/d/1wkPebjAmX3TWlar8HtL-GTniY8Vg29cWxahkBAUrI-0/edit?usp=sharing
 ![Screenshot 2025-10-07 at 2 20 59 PM](https://github.com/user-attachments/assets/34a47cb8-5475-4d22-9785-70081ce39d75)
 ![IMG_7535](https://github.com/user-attachments/assets/18ff51d2-0d71-4d54-b738-b8925a7d14cd)
