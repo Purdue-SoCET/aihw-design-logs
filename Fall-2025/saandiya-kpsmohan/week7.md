@@ -72,6 +72,13 @@ vegg.valid
 Veggie File interface (by Joseph): https://github.com/Purdue-SoCET/tensor-core/blob/jghanem/vector-core/src/include/vector_if.vh   
 GSAU Interface: https://github.com/Purdue-SoCET/tensor-core/blob/tensor_compute_accelerator_saandiya/src/include/gsau_if.vh  
 
+![Screenshot 2025-10-08 at 3 46 45 PM](https://github.com/user-attachments/assets/0384039d-e2e1-4b02-878d-a058b8e0c052)
+![Screenshot 2025-10-08 at 3 47 06 PM](https://github.com/user-attachments/assets/40aa2ea3-ea36-4729-b3b1-9d8213c2525d)
+![Screenshot 2025-10-08 at 3 47 21 PM](https://github.com/user-attachments/assets/346043fe-3652-4ee9-9224-dbba68ebe6bb)  
+
+Feedback from Jing : ```I dont see any major issues, signals are well commented. 
+Scoreboard modport might not have the data field. Check with scheduler team if they still calling it scoreboard```
+
 ## 3. Valid Ready Handshake Reading
 ![Screenshot 2025-10-07 at 2 23 28 PM](https://github.com/user-attachments/assets/be9855b0-6ff7-46cb-ac5d-b1e654525502)
 ![Screenshot 2025-10-07 at 2 23 55 PM](https://github.com/user-attachments/assets/0cb2cc83-67ad-4960-a390-f623562efd64)
@@ -79,6 +86,11 @@ GSAU Interface: https://github.com/Purdue-SoCET/tensor-core/blob/tensor_compute_
 This handshake is useful for stalling without losing any data, pipeline friendly and doesn't need any other flags.
 
 ## 4. GSAU Source Code
+I have started on the source code for GSAU.  
+GSAU Top File: https://github.com/Purdue-SoCET/tensor-core/blob/tensor_compute_accelerator_saandiya/src/modules/gsau_top.sv  
+GSAU Control Unit: https://github.com/Purdue-SoCET/tensor-core/blob/tensor_compute_accelerator_saandiya/src/modules/gsau_control_unit.sv   
+GSAU RD Register Queue: https://github.com/Purdue-SoCET/tensor-core/blob/tensor_compute_accelerator_saandiya/src/modules/gsau_queue.sv  
 
 # Future Plan
+- Complete top level GSAU completely.  
 - Testbench source code with small test cases and make sure everything works as expected.
