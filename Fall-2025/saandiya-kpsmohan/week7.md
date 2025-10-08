@@ -51,7 +51,7 @@ After finishing hardware coding, we should also do some python script that outpu
 # Week's Progress
 ## 1. UVM Team Discussion (10/7/25)
 Discussion: https://docs.google.com/document/d/1wkPebjAmX3TWlar8HtL-GTniY8Vg29cWxahkBAUrI-0/edit?usp=sharing
-![Screenshot 2025-10-07 at 2 20 59 PM](https://github.com/user-attachments/assets/34a47cb8-5475-4d22-9785-70081ce39d75)
+![Screenshot 2025-10-08 at 4 11 44 PM](https://github.com/user-attachments/assets/a4aae64d-1e0a-4edf-9981-bf968c12c1c1)
 ![IMG_7535](https://github.com/user-attachments/assets/18ff51d2-0d71-4d54-b738-b8925a7d14cd)
 
 ## 2. GSAU Interface
