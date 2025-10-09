@@ -86,11 +86,22 @@ Scoreboard modport might not have the data field. Check with scheduler team if t
 This handshake is useful for stalling without losing any data, pipeline friendly and doesn't need any other flags.
 
 ## 4. GSAU Source Code
-I have started on the source code for GSAU.  
-GSAU Top File: https://github.com/Purdue-SoCET/tensor-core/blob/tensor_compute_accelerator_saandiya/src/modules/gsau_top.sv  
-GSAU Control Unit: https://github.com/Purdue-SoCET/tensor-core/blob/tensor_compute_accelerator_saandiya/src/modules/gsau_control_unit.sv   
-GSAU RD Register Queue: https://github.com/Purdue-SoCET/tensor-core/blob/tensor_compute_accelerator_saandiya/src/modules/gsau_queue.sv  
+Me and Nikhil have started on the source code for GSAU.  
+GSAU Control Unit (top file): https://github.com/Purdue-SoCET/tensor-core/blob/tensor_compute_accelerator_saandiya/src/modules/gsau_control_unit.sv   
+GSAU RD Register Queue: https://github.com/Purdue-SoCET/tensor-core/blob/tensor_compute_accelerator_saandiya/src/modules/sync_fifo.sv  
+We will use a sync fifo for the RD register queue.  
+Shifting network - We will use the Benes network from Akshath's scratchpad team which is being desgined by Haejune.
+
+Pipelined or not?  
+The GSAU control unit will not be pipelined. This is how it works:  
+Control logic sends the instructions and data to systolic array.  
+And the control logic also stores rd to the fifo.  
+When systolic array has output, tt pops the fifo for vd.  
+Then the output and vd will be sent out to wb buffer.  
+Sending instructions to systolic array and writing output to wb buffer is decoupled.    
 
 # Future Plan
 - Complete top level GSAU completely.  
-- Testbench source code with small test cases and make sure everything works as expected.
+- Testbench source code with small test cases and make sure every unit works as expected.
+- Complete verification of modules by 10/19
+- Integration to vector core by 11/2
