@@ -1,5 +1,3 @@
-```markdown
-
 **State:**  
 I am not stuck with anything, don't need help right now.  
 
@@ -128,5 +126,3 @@ Next steps:
     - Read links Akshath sent us about Swizzling (crucial!), GEMMs, convolutions
     - Play around with the convolution simulator
     - Reverse engineer the algorithm for swizzling
-
-```markdown

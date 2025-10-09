@@ -1,4 +1,3 @@
-```markdown
 State
 
 I am not stuck on any tasks right now and do not need immediate help.
@@ -50,4 +49,3 @@ I am not stuck on any tasks right now and do not need immediate help.
 ## Next steps
 
 - Begin implementing the FSM(s) in RTL and iterating on the synchronization logic between wdata/rdata swizzling and descriptor handling
-```markdown

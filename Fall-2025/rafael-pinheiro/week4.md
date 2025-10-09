@@ -1,4 +1,3 @@
-```markdown
 State
 
 Quite overwhelmed by the amount of information and details right now. I may ask for help soon to clarify interfaces and implementation responsibilities
@@ -65,4 +64,3 @@ Quite overwhelmed by the amount of information and details right now. I may ask 
 - Confirm the set of inner modules for the frontend (the current draft suggests the service FSM, arbiter, slot-mask generator, and swizzle units) — status: mostly identified
 - Start implementing RTL for the frontend and the Service FSM
 
-```markdown

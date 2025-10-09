@@ -1,4 +1,3 @@
-```markdown
 State: I am not stuck with anything, don't need help right now.
 
 I'll be out of town from Thursday through Monday; I plan to work remotely but may miss or struggle to attend some meetings during that time.
@@ -27,5 +26,3 @@ I'll be out of town from Thursday through Monday; I plan to work remotely but ma
 
 - Continue working on and iterating the `r_fsm` implementation and its testbench until the modport/testbench issues are resolved
 - Finish the `scratchpad_if` refactor and run a set of focused simulation tests to validate multi-VC interactions
-
-```markdown

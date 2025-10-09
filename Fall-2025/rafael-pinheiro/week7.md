@@ -1,4 +1,4 @@
-```markdown
+
 State
 
 I am not blocked on any tasks at the moment.
@@ -266,5 +266,3 @@ https://app.diagrams.net/#G1ElCZMM-KjPGufnR3GiQcNenLo1k3HUEb#%7B%22pageId%22%3A%
 
 - Continue adapting the `r_fsm` logic toward a pipelined, multi-channel datapath as discussed; in practice this means refactoring the FSM into a steady-state request/response pipeline with small per-channel latches and a stall signal for back-pressure
 - After the datapath refactor, create top-level functional testbenches and integrate with the veggie file and the Vector Core's flow
-
-```markdown

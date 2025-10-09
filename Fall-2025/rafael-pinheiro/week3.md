@@ -1,5 +1,3 @@
-```markdown
-
 **State**
 
 Not exactly stuck, but quite busy with ECE 437's single-cycle processor lab (due 2025-09-16). Progress may be slower this week.
@@ -166,5 +164,3 @@ $$\text{bank} = \text{lane} \oplus (\text{row} \& (\mathrm{NUM\_BANKS}-1))$$
 - Finalize the I/O contract (data widths, LANES, pipelining, handshake semantics) with SA owners
 - Implement and validate swizzle / inverse-swizzle RTL and a small testbench
 - Design bank arbiter and replay logic; model a tile load/store controller and slot-mask generator
-
-```markdown
