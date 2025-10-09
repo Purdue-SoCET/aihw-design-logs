@@ -1,7 +1,7 @@
 # Week 7
 
 ## State:
-I am not stuck with anything, would like to get a better understanding of the lockup-free cahce and it functionality as it impacts a development of both the AXI bus and Non-blocking DRAM controller. 
+I am not stuck with anything, would like to get a better understanding of the lockup-free cahce and it functionality as it impacts the development of both the AXI bus and Non-blocking DRAM controller. 
 
 ## Progress:
 This week, my progress started with continuing my reading and learning of the AXI interconnect. Most of what I learned was from last week, but this week I wanted to fully understandt he interface so I could define the naming and sizes of all top-level inputs/outputs. I spent time looking over the interface files for the scratchpad and lockup-free cache so understand what signals are being sent into DRAM, and if any changes need to be made. 
