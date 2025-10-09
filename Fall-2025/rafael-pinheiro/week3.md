@@ -19,15 +19,11 @@ Core idea: map each logical lane to a physical bank using a reversible, row-depe
 
 Mathematically the mapping used is:
 
-$$
-	ext{swizzled\_bank} = \text{lane} \oplus \bigl(\text{row} \& (\mathrm{NUM\_BANKS}-1)\bigr)
-$$
+$$\text{swizzled\_bank} = \text{lane} \oplus \bigl(\text{row} \& (\mathrm{NUM\_BANKS}-1)\bigr)$$
 
 Inverse (to recover lane ordering when assembling a vector read):
 
-$$
-	ext{lane} = \text{swizzled\_bank} \oplus \bigl(\text{row} \& (\mathrm{NUM\_BANKS}-1)\bigr)
-$$
+$$\text{lane} = \text{swizzled\_bank} \oplus \bigl(\text{row} \& (\mathrm{NUM\_BANKS}-1)\bigr)$$
 
 ### Example helper (Python)
 
