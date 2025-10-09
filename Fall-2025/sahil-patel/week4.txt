@@ -32,13 +32,13 @@ DETAILS ON PROGRESS
 - Added a stub **lowering** so codegen doesn’t break when theta appears.
 - Kept grammar small and consistent to avoid conflicts later.
 
-## NOTES
+NOTES
 - Use only ISA-approved forms: VM/VV/VS/VI/SA (no extra forms).
 - Default integer type is 64-bit; avoid silent 32-bit behavior.
 - Enforce vector element type + width rules; reject mixed widths in one instruction.
 - PPCI remains the fast path to reach “compile to assembly”; LLVM is a future option.
 
-## NEXT STEPS
+NEXT STEPS
 - Implement the architecture files:
   - registers.py and vector_registers.py (classes, aliases like sp, ra, gp)
   - tokens.py (64-bit bitfields: opcode, rd, rs1, rs2, imm/imm12)
