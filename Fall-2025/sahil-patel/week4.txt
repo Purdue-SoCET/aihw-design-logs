@@ -1,48 +1,48 @@
 I’m not stuck with anything.
 
-# WEEK 4 — DESIGN LOG
+WEEK 4 — DESIGN LOG
 
-## PROGRESS
+PROGRESS
 - Understand the new ISA and ways to implement support.
 - Plan how to implement the new architecture in the compiler.
 - Generate inline assembly from custom instructions.
 
-## DETAILS ON PROGRESS
-### ISA understanding → compiler mapping
+DETAILS ON PROGRESS
+  ISA understanding → compiler mapping
 - Listed instruction forms to support first: **VM, VV, VS, VI, SA**.
 - Mapped each form to fields: **opcode, rd, rs1, rs2, imm/imm12**.
 - Wrote quick examples of each form to test parsing and printing.
 
-### Architecture plan (compiler side)
+  Architecture plan (compiler side)
 - Planned core files:
-  - `registers.py`, `vector_registers.py`, `tokens.py`, `instructions.py`, `arch.py`, `asm_printer.py`
+  - registers.py, vector_registers.py, tokens.py, instructions.py, arch.py, asm_printer.py
 - Decided register classes:
-  - **GPR** (x0…xN, 64-bit), **VR** (v0…vN)
+  - GPR (x0…xN, 64-bit), VR (v0…vN)
 - Sketched calling-convention notes (lr/sp saves, vector args) — finalize after ISA confirms.
 
-### Inline assembly from custom instructions
-- Defined simple mnemonics for early testing (e.g., `add.vv`, `add.vs`, `addi.vi`).
+  Inline assembly from custom instructions
+- Defined simple mnemonics for early testing (add.vv, add.vs, addi.vi).
 - Round-trip: parse custom instruction → encode fields → print inline asm → compare with input.
 - Added clear errors for:
   - Immediate out of range
   - Vector width mismatch
 
-### Parser + lowering touch-ups
+  Parser + lowering touch-ups
 - Parser accepts **theta** as a placeholder node (no final meaning yet).
 - Added a stub **lowering** so codegen doesn’t break when theta appears.
 - Kept grammar small and consistent to avoid conflicts later.
 
 ## NOTES
-- Use only ISA-approved forms: **VM/VV/VS/VI/SA** (no extra forms).
-- Default integer type is **64-bit**; avoid silent 32-bit behavior.
+- Use only ISA-approved forms: VM/VV/VS/VI/SA (no extra forms).
+- Default integer type is 64-bit; avoid silent 32-bit behavior.
 - Enforce vector element type + width rules; reject mixed widths in one instruction.
-- **PPCI** remains the fast path to reach “compile to assembly”; **LLVM** is a future option.
+- PPCI remains the fast path to reach “compile to assembly”; LLVM is a future option.
 
 ## NEXT STEPS
 - Implement the architecture files:
-  - `registers.py` and `vector_registers.py` (classes, aliases like `sp`, `ra`, `gp`)
-  - `tokens.py` (64-bit bitfields: `opcode`, `rd`, `rs1`, `rs2`, `imm/imm12`)
-  - `instructions.py` (encode helpers for **VM/VV/VS/VI/SA**)
-  - `arch.py` (register classes, instruction set list, hooks)
-  - `asm_printer.py` (mnemonics + operand order)
+  - registers.py and vector_registers.py (classes, aliases like sp, ra, gp)
+  - tokens.py (64-bit bitfields: opcode, rd, rs1, rs2, imm/imm12)
+  - instructions.py (encode helpers for VM/VV/VS/VI/SA)
+  - arch.py (register classes, instruction set list, hooks)
+  - asm_printer.py (mnemonics + operand order)
 - Add unit tests for parsing, encoding, and round-trip printing for each form.
