@@ -1,3 +1,4 @@
+```markdown
 State: I am not stuck with anything, don't need help right now.
 
 Progress:
@@ -7,3 +8,5 @@ Progress:
 
 09/04 - Review done. PDF of notes uploaded at aihw-design-logs/Fall-2025/rafael-pinheiro/week1
       Will probably do the related worksheets if I have time
+
+```markdown
