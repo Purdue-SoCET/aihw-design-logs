@@ -90,7 +90,8 @@ Me and Nikhil have started on the source code for GSAU.
 GSAU Control Unit (top file): https://github.com/Purdue-SoCET/tensor-core/blob/tensor_compute_accelerator_saandiya/src/modules/gsau_control_unit.sv   
 GSAU RD Register Queue: https://github.com/Purdue-SoCET/tensor-core/blob/tensor_compute_accelerator_saandiya/src/modules/sync_fifo.sv  
 We will use a sync fifo for the RD register queue.  
-Shifting network - We will use the Benes network from Akshath's scratchpad team which is being desgined by Haejune.
+Shifting network - We will use the Benes network from Akshath's scratchpad team which is being desgined by Haejune.  
+GSAU testbench: https://github.com/Purdue-SoCET/tensor-core/blob/tensor_compute_accelerator_saandiya/src/testbench/gsau_control_unit_tb.sv  
 
 Pipelined or not?  
 The GSAU control unit will not be pipelined. This is how it works:  
