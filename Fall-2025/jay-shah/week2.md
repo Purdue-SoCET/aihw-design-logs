@@ -12,6 +12,7 @@ No major barriers or concerns this week.
    Went through the following materials:
    
    High level Design changes this semester:
+   
    https://drive.google.com/file/d/1JW5Jguhs4vChq-sziK6ZME-tJgycms2J/view
    https://drive.google.com/file/d/1unNIZAcid6fzkeXMgdsKzFMuHUBHNdTr/view?usp=sharing
    
@@ -22,9 +23,9 @@ No major barriers or concerns this week.
    https://docs.google.com/document/d/1rC2aKzQkUmv_Xsk0O_zc7xOVgJlFa1jRvBw9cpV9Gxs/edit?usp=sharing    
    
 
-3. Attended a **scheduler core overview session** conducted by *Rishi*, which detailed the functional flow and interface design of the scheduler module. Participated in an in-depth **discussion on ISA modifications**, specifically related to **vector and scratchpad instructions**.  
+4. Attended a **scheduler core overview session** conducted by *Rishi*, which detailed the functional flow and interface design of the scheduler module. Participated in an in-depth **discussion on ISA modifications**, specifically related to **vector and scratchpad instructions**.  
    
-4. Conducted a **self-overview of the previous RTL implementation**, revisiting older design files to gain familiarity with current module structures and coding conventions.
+5. Conducted a **self-overview of the previous RTL implementation**, revisiting older design files to gain familiarity with current module structures and coding conventions.
    From the github master branch:
    https://github.com/Purdue-SoCET/tensor-core/tree/master
 
