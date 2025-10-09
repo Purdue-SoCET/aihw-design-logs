@@ -9,8 +9,8 @@ PROGRESS
 
 DETAILS ON PROGRESS
   ISA understanding → compiler mapping
-- Listed instruction forms to support first: **VM, VV, VS, VI, SA**.
-- Mapped each form to fields: **opcode, rd, rs1, rs2, imm/imm12**.
+- Listed instruction forms to support first: VM, VV, VS, VI, SA.
+- Mapped each form to fields: opcode, rd, rs1, rs2, imm/imm12.
 - Wrote quick examples of each form to test parsing and printing.
 
   Architecture plan (compiler side)
@@ -28,8 +28,8 @@ DETAILS ON PROGRESS
   - Vector width mismatch
 
   Parser + lowering touch-ups
-- Parser accepts **theta** as a placeholder node (no final meaning yet).
-- Added a stub **lowering** so codegen doesn’t break when theta appears.
+- Parser accepts theta as a placeholder node (no final meaning yet).
+- Added a stub lowering so codegen doesn’t break when theta appears.
 - Kept grammar small and consistent to avoid conflicts later.
 
 NOTES
