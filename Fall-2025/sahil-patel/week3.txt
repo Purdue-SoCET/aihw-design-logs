@@ -1,3 +1,6 @@
+I'm not stuck with anything
+
+
 PROGRESS
 
 Learning how PPCI’s frontend and backend fit together.
@@ -43,3 +46,4 @@ Data types in the parser:
 -Default integers are 64-bit (avoid silent 32-bit).
 -Vector element types vs vector width are separated.
 -Parser enforces consistent vector width inside each instruction.
+
