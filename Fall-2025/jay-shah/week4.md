@@ -70,7 +70,7 @@ sysarray.CONV
 
    Further discussion on how the instructions for the weight loading should be designed.
 
-2. Attended the systolic array's weeky meeting, further dived into the reading for systolic array from these sources:
+3. Attended the systolic array's weeky meeting, further dived into the reading for systolic array from these sources:
 
    Older design: https://app.diagrams.net/#G1yjtGIwYba1tQ_oEZ2nP-iKsl-h5MZtOR#%7B%22pageId%22%3A%229D6ffl-pBdOOQ0Yu_FEU%22%7D
 
@@ -80,7 +80,14 @@ sysarray.CONV
 
    GEMM and Convolution operations flow: https://docs.google.com/presentation/d/1NUsgPNHckD6SQqHwr7apMZsKGGzt-dGIDLM42nVq9yI/edit?slide=id.g383b35a1ff2_0_1&pli=1#slide=id.g383b35a1ff2_0_1
    
-   Gained an understanding of the functioning of systolic array and the flow of data through the module. Now, need to apply this knowledge to separate out the GEMM controller from te current systolic array controller. 
+   Gained an understanding of the functioning of systolic array and the flow of data through the module. Now, need to apply this knowledge to separate out the GEMM controller from te current systolic array controller.
+
+4. Logged into the ASICFAB to clone the code repo. Got Systolic Array testcases to run on any RTL changes. Ran the test commands on vanilla code to see if the setup is working properly:
+   verilator -f [my file]
+   
+   - verilator -f [my file] from tensor_core folder
+   - obj_dir/Vsystolic_array_tb`
+   - gtkwave waves.vcd / dump.vcd
    
 
 ## Next Week’s Tasks
