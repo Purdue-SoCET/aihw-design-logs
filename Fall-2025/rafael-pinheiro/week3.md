@@ -19,11 +19,11 @@ Core idea: map each logical lane to a physical bank using a reversible, row-depe
 
 Mathematically the mapping used is:
 
-$$\text{swizzled\_bank} = \text{lane} \oplus \bigl(\text{row} \& (\mathrm{NUM\_BANKS}-1)\bigr)$$
+`swizzled_bank = lane ^ (row & (NUM_BANKS - 1))`
 
 Inverse (to recover lane ordering when assembling a vector read):
 
-$$\text{lane} = \text{swizzled\_bank} \oplus \bigl(\text{row} \& (\mathrm{NUM\_BANKS}-1)\bigr)$$
+`lane = swizzled_bank ^ (row & (NUM_BANKS - 1))`
 
 ### Example helper (Python)
 
@@ -141,7 +141,7 @@ Note: data padding is required when `*_len` is not a multiple of `LANES` or `NUM
 1. Software/DMA issues a tile transfer with `start_addr`, `row_len`, `col_len`, `isCol`, and `config_*`
 2. For each logical `(row, lane)` compute
 
-$$\text{bank} = \text{lane} \oplus (\text{row} \& (\mathrm{NUM\_BANKS}-1))$$
+`bank = lane ^ (row & (NUM_BANKS - 1))`
 
    slot/address is derived from `row`/`col` plus the `base` pointer.
 3. Drive `addr` and `we` into the selected bank and write `data_in`
