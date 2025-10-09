@@ -16,9 +16,7 @@ No major barriers or concerns this week.
 3. To understand the changes required I talked to Akshath and received this green card from him that outlines how the instructions will interface with the scratchpad GEMM controller.
    
    scpad.ld
-    - 7 bit opcode telling which one 
-    - GPR with the DRAM Base Address 
-    - base_row (starting address of the tile)
+    - 7 bit opcode telling which one GPR with the DRAM Base Address base_row (starting address of the tile)
     - num_rows 
     - num_cols
     - scpad_id
