@@ -22,7 +22,10 @@ Note that the last row/col of tiles extend past the 64×64 boundary → this is 
 ## 2. Kernels
 Kernels will be transformed into 1 vector (including all channels). One column of systolic array is the same kernel but different channels. Example:
 ![Screenshot 2025-10-06 at 6 23 14 PM](https://github.com/user-attachments/assets/0cc38d86-df6f-44ce-b99e-3e13326532b3)
-![IMG_7436](https://github.com/user-attachments/assets/42a085ac-3e34-4283-8c84-22569f9a6e64)
+![IMG_7436](https://github.com/user-attachments/assets/42a085ac-3e34-4283-8c84-22569f9a6e64)  
+
+Tiling for kernels:  
+If the kernel size is more than 5x5, we should just transform it into 1 vector as usual. The difference is that, we will take first 32 elements for 1st operation and then we will load the remaining element padded with 0s to make it 32 in the next load weight operation, and we will stream the same set of inputs again.
 
 ## 3. Inputs
 Load 1 tile at a time from SP to TCA, rearrange matrix into Toeplitz matrix using im2col in a register/buffer. Stream this into SA, across 32 buffers at a time.
