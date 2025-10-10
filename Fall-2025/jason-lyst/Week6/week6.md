@@ -7,7 +7,7 @@
     inability to access the software. Additionally, I am unsure on when
     we will have a coherent plan to design the non-blocking controller.
 
-# Week 5 Progress:
+# Week 6 Progress:
 ### September 27th:
     Created interface diagram between MC and PHY for the design review. 
     Screenshot posted in this week 6 directory.
