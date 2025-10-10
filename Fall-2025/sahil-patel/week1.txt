@@ -1,10 +1,54 @@
-I'm not stuck with anything. 
+-- CH7: Latency & Throughput --
 
-Progress 
--Progessing on understanding PPCI's backend and fronend support
--finding ways to implement changes to PPCI front and backend
--implementing new keywords in parser 
+Key ideas
+- Latency: time from input arrival to its corresponding output being valid.
+- Throughput: results per unit time (how fast outputs come out steady-state).
+- Pipelines overlap work; the slowest stage caps the rate.
 
+Core formulas
+- Unpipelined comb:
+  latency = t_PD
+  throughput = 1 / t_PD
 
-Next Step
--implementing support for basic instructions 
+Definitions
+- K-stage pipeline: every input→output path crosses exactly K registers.
+- Convention: put a register at each stage output.
+
+Basic method to pipeline
+1) Draw a cut line at each stage boundary (every output must cross a line).
+2) Ensure signals cross lines in the same direction.
+3) Insert registers on stage outputs to enforce timing.
+
+Interleaving (circuit-level “multi-copy”)
+- Duplicate slow unit(s) and alternate inputs across copies to boost rate.
+- Can combine with pipelining; bottleneck may shift elsewhere.
+
+-- CH14: Memory Basics --
+
+SRAM
+- Cell: 2 cross-coupled inverters + 2 access transistors (bistable).
+- Read: precharge bitlines to VDD; enable wordline; one bitline discharges slightly; sense amp detects.
+- Write: drive bitlines, assert wordline, overpower cell to new state.
+- Fast, bigger area per bit.
+
+DRAM
+- Cell: 1 transistor + 1 capacitor (very dense).
+- Capacitor leaks > requires refresh.
+- Slower than SRAM but far smaller area/bit.
+
+Flash
+- Floating-gate transistor holds charge; very dense; slower writes/erases.
+
+-- CH15: 
+
+5-stage datapath
+- IF (fetch), RF (decode/read), ALU (execute), MEM (access), WB (write back)
+
+Hazard handling
+- Stall: simple, increases CPI.
+- Bypass/forward: more hardware, reduces stalls/CPI.
+- Speculation: predict to keep pipeline busy; recover on mispredict.
+
+Notes
+- Deeper pipelines encounter hazards more frequently.
+- Compilers can reorder to separate dependent ops and reduce stalls.
