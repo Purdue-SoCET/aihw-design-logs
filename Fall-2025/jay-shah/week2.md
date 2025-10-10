@@ -11,9 +11,12 @@ No major barriers or concerns this week.
 2. Completed a detailed overview of the architecture of AI Hardware. Focused on the interaction between scheduler core, vectore core and the systolic array.
    Went through the following materials:
    
-   High level Design changes this semester:
+   High level Design:
    
    https://drive.google.com/file/d/1JW5Jguhs4vChq-sziK6ZME-tJgycms2J/view
+
+   Expected changes this semester:
+   
    https://drive.google.com/file/d/1unNIZAcid6fzkeXMgdsKzFMuHUBHNdTr/view?usp=sharing
    
    ISA ideas:
@@ -23,7 +26,7 @@ No major barriers or concerns this week.
    https://docs.google.com/document/d/1rC2aKzQkUmv_Xsk0O_zc7xOVgJlFa1jRvBw9cpV9Gxs/edit?usp=sharing    
    
 
-4. Attended a scheduler core overview session conducted by Rishi, which detailed the functional flow and interface design of the scheduler module. Participated in an in-depth discussion on ISA modifications, specifically related to vector and scratchpad instructions led by Sooraj.  
+4. Attended a scheduler core overview session conducted by Rishi, which detailed the functional flow and interface design of the scheduler module. Participated in an in-depth discussion on ISA modifications, specifically related to vector and scratchpad instructions led by Sooraj. One of major points discussed relevant to my work was the size of the instructions going forward. Currently the Tensor-Core supports 32-bit instructions. But with the addition of vecotr functionality and changes in the scratchpad interface, discussion was held on how manybits will we need per intstruction. The consensus was we will need somewhere between 32 and 64 bits to handle all functionality. 
    
 5. Conducted a self-overview of the previous RTL implementation, revisiting older design files to gain familiarity with current module structures and coding conventions.
    From the github master branch:
