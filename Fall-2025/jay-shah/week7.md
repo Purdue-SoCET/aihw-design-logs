@@ -6,7 +6,7 @@ No major barriers or concerns this week.
 ---
 
 ## Highlights This Week
-1. Focused on the scheduler core architecture this week. Read up on VLIW from the following source:
+1. Focused on the scheduler core architecture this week. Read up on VLIW from the following sources:
    - https://www.engineering.iastate.edu/~zzhang/courses/cpre581-f06/lectures/Lecture24-1p.pdf
    - https://www2.seas.gwu.edu/~bhagiweb/cs211/lectures/epic.pdf
    - https://www.youtube.com/watch?v=FvJTnPEGVWg&t=70s
