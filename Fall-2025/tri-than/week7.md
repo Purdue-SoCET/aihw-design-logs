@@ -10,8 +10,6 @@ Helping the team to finalize the the DDR4 non-blocking request (just helping the
 AXI-bus RTL with queues but I will discuss more on Friday with Aaryan and Aakshath about something then I will design in detailed with Aaryan
 
 
-
-
 ## Explain verification: 
 Integrate with DDR4 DRAM, writing classes, and such and perform test
 1. Initialization - Test1 (Passed)
