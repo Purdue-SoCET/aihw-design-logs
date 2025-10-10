@@ -5,10 +5,15 @@ Progress this week:
 Meetings: 
 
 10/3 - Team meeting with Rishi and Sooraj (VLIW proposed)
+
 10/5 - Worktime where we focused on reading papers and learning more about VLIW
+
 10/6 - Work time with senior design teammates to clarify aspects of microarchitecture (mainly predication and dealing with stores) and making top-level RTL diagram
+
 10/7 - Scheduler core meeting with Rishi
+
 10/8 - Meeting with vector core to clarify vector implementations
+
 10/9 - Meeting with Sooraj and Rishi to clarify VLIW microarchitecture
 
 Notes: 
