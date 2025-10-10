@@ -1,139 +1,162 @@
-State: Not exactly stuck, but quite busy with 437's single cycle processor lab (due 09/16). Progress might be slower this week
+**State**
 
-Progress:
-- Reverse engineering of the swizzling's algorithm:
+Not exactly stuck, but quite busy with ECE 437's single-cycle processor lab (due 2025-09-16). Progress may be slower this week.
+
+---
+
+## Progress highlights
+
+- Reverse-engineered the row-dependent swizzle mapping and validated reversibility.
+- Confirmed the approach reduces systematic bank conflicts for typical tensor access patterns.
+- Collected an early RTL I/O / control signal list and next-step microarchitecture tasks.
+- Diagram (draw.io) reference: https://app.diagrams.net/#G1ElCZMM-KjPGufnR3GiQcNenLo1k3HUEb#%7B%22pageId%22%3A%22Tro5ICBytG0uPzhBu2ZE%22%7D
+
+---
+
+## Swizzle / Un-swizzle — concept
+
+Core idea: map each logical lane to a physical bank using a reversible, row-dependent permutation so that consecutive rows spread accesses across banks and avoid repeating bank conflicts.
+
+Mathematically the mapping used is:
+
+`swizzled_bank = lane ^ (row & (NUM_BANKS - 1))`
+
+Inverse (to recover lane ordering when assembling a vector read):
+
+`lane = swizzled_bank ^ (row & (NUM_BANKS - 1))`
+
+### Example helper (Python)
+
+```python
 NUM_BANKS = 32
 
-```
 def _row_lane(abs_row: int, cols: int):
-    # Take the 5 lower bits of the row index
-    low5 = abs_row & (NUM_BANKS - 1)  
+    """Return (banks, slots, valid) for a logical row.
 
-    # Row-dependent phase: determines how the row maps into banks
-    banks = [(lane ^ low5) & (NUM_BANKS - 1) for lane in range(NUM_BANKS)]
-    # Each lane (thread, or column index) generates a bank index
-    # (lane ^ low5) mixes the lane ID with the row bits
-    # Swizzling -> row-dependent permutation
-    # Effect (as explained in the different papers Akshath sent us):
-    #   consecutive rows map differently across banks, breaking up systematic conflicts
-    # How does it do that? Not fully clear yet, the formal mathematical proof is tricky
-    # Might revisit this later for a deeper dive
+    - banks: list of bank indices (per lane) after swizzle
+    - slots: per-lane slot/address (here simply repeats abs_row)
+    - valid: mask for active lanes when cols < NUM_BANKS
+    """
+    # Lower bits of the row index (mask depends on NUM_BANKS)
+    low = abs_row & (NUM_BANKS - 1)
 
-    # Slots just repeat the row index
+    # Row-dependent permutation: lane ^ low
+    banks = [(lane ^ low) & (NUM_BANKS - 1) for lane in range(NUM_BANKS)]
+
+    # Slots (address/row) — here we repeat the row index per lane
     slots = [abs_row] * NUM_BANKS
-    # Each lane still points to the same logical row
-    # The difference is where in memory (bank) that row’s piece resides
 
-    # Validity mask
+    # Valid lanes mask for short rows
     valid = [(lane < cols) for lane in range(NUM_BANKS)]
-    # Some rows may have fewer active columns (cols < NUM_BANKS)
-    # This mask tells which lanes are actually used
 
     return banks, slots, valid
-
-    map lane i $$\mapsto$$ bank i % NUM_BANKS $$\Longrightarrow$$ 
-
-    All threads in a warp that touch column 0 across rows might hammer the same bank → bank conflict.
-
-    This creates serialization, hurting bandwidth.
-
-    By XOR-ing with low5, the bank assignment depends on both:
-
-    - the lane ID,
-    
-    - and the row index’s low bits.
-    
-    So each row distributes its columns differently across banks. That means even if all warps access the same column pattern, their accesses land on different banks row-to-row, reducing conflicts and improving throughput.
 ```
 
-- Assuming Scratchpad is:
+Why this helps: if the mapping were static (e.g., bank = lane % NUM_BANKS), multiple warps or rows accessing the same column would repeatedly target the same bank(s). XORing with the low row bits spreads those accesses across banks as row changes, breaking up pathological conflict patterns.
 
-    - Organized as NUM_BANKS separate RAMs
+---
 
-    - Each bank gets its own we and addr
+## Architectural assumptions (early)
 
-    - Typically multi-ported or time-multiplexed to support R/W simultaneously
+- `NUM_BANKS = 32` (parameterizable)
+- Scratchpad composed of `NUM_BANKS` independent SRAM banks
+- Each bank provides independent `addr` and `we`; read/write concurrency relies on multi-porting or time-multiplexing
+- Scratchpad is software-managed (no hardware tags/valid like a DCache)
+- Scratchpad is used by the Systolic Array (SA) and Vector units; the CPU and scheduler continue to use DCache
 
-- Too early RTL signals I may need:
+---
 
-    - data_in [DW-1:0] – ~~data from SA~~ Julio
+## Early RTL signal list (tentative)
 
-    - addr_in [AW-1:0] – ~~physical address (linear or bank,row,col)~~
+Note: signals marked "early" may be refined as system integration decisions solidify
 
-    - we_in – ~~write enable~~
+### Very early / likely inputs (from system / DMA / host)
 
-    - row_id
+- `data_in [DW-1:0]` — data to write into the scratchpad (from DMA / host)
+- `addr_in [AW-1:0]` — physical address or encoded (bank, row, col)
+- `we_in` — write enable
+- `row_id [4:0]` — logical row index (used for swizzling)
+- `col_id [4:0]` — logical column index
+- `row_or_col` — selects row-wise vs column-wise transfer
+- `base [AW-1:0]` — base pointer for the current tile
+- handshake bits — start / ack / ready semantics
 
-    - col_id
+### Early outputs (toward SA / Vector cores)
 
-    - row_or_col
+- `data_out [LANES*DW-1:0]` — assembled vector read (one word per lane)
+- `valid_out` — asserts when `data_out` is valid (un-swizzled, aligned)
+- `ready_out` — SA can accept the next vector
+- `busy` — scratchpad is servicing requests
+- `stall_in` — back-pressure from SA
+- `start`, `done` — tile-level handshake
 
-    - base
+### Control / config registers
 
-    - handshakes 
+- `config_stride` — stride between logical rows in physical memory
+- `config_shape` — tile shape (rows × cols)
+- `config_swizzle` — enable/disable swizzle or select swizzle mode
+- `interrupt` / `error` — optional exception reporting
 
-- Too early RTL signals I may be sending out from the frontend:
+---
 
-    - ~~addr_req [AW-1:0] – logical (row, col) request from systolic frontend~~
+## Interface-stabilized RTL I/O (per `vec_if` and `sys_if`) — not-so-early
 
-    - ~~addr_bank [log2(NUM_BANKS)-1:0] – bank index chosen by inverse swizzle~~ $$\rightarrow$$ SA already knows what it wants
+### Inputs (per interface)
 
-    - ~~addr_slot – row/col inside the bank~~
+- `start_addr [14:0]` — tile start address
+- `row_id [4:0]`
+- `col_id [4:0]`
+- `row_len [4:0]` — tile row length
+- `col_len [4:0]` — tile column length
+- `isCol` — direction flag (1 = column-oriented, 0 = row-oriented)
 
-    - data_out [LANES*DW-1:0] – wide vector, one word per systolic lane
+### Outputs (per interface)
 
-    - ~~valid_out – asserts when data_out is correctly un-swizzled~~
+- `slot_mask [NUM_BANKS-1:0]` — which bank slots are active for this transfer
+- `shift_mask [NUM_BANKS-1:0]` — used for lane/column shifts for alignment
+- `stall_sys` — back-pressure to system interface
+- `done_sys` / `done_vec` — transfer complete signals
+- `arr_sys [31:0]` / `arr_vec [31:0]` — aggregated or per-lane data output (may be padded)
 
-    - ~~ready_out – SA can accept next word(s)~~
+Note: data padding is required when `*_len` is not a multiple of `LANES` or `NUM_BANKS`.
 
-- Control signals:
+---
 
-    - start / done – tile-level handshakes.
+## Datapath & control considerations
 
-    - config_stride, config_shape, config_swizzle – how to interpret logical $$\rightarrow$$ physical mapping.
+- Swizzle unit: converts `(row, lane) -> (bank, slot)` for physical addressing on writes/reads
+- Inverse swizzle unit: converts `(bank, slot, row) -> lane` ordering when assembling `data_out`
+- Slot-mask generation: creates per-beat masks for partial tiles (`col_len < NUM_BANKS`)
+- Bank arbiter / scheduler: time-multiplexes accesses when ports are constrained
+- Optional write buffer: decouples DMA/CPU writes from bank write latencies
+- Replay / retry mechanism: handle structural hazards (busy banks or port conflicts) using replay semantics rather than speculative poisoning
+- Handshakes: tile-level start/done plus per-beat valid/ready (AXI-Stream-like) between frontend and SA
 
-    - stall_in – SA can back-pressure the frontend
+---
 
-    - busy – scratchpad actively serving requests
+## Example address flow
 
-Reminder:
+### Write (populate scratchpad tile)
 
-swizzled_bank = lane ^ (row & (NUM_BANKS-1))
+1. Software/DMA issues a tile transfer with `start_addr`, `row_len`, `col_len`, `isCol`, and `config_*`
+2. For each logical `(row, lane)` compute
 
-$$\rightarrow$$
+`bank = lane ^ (row & (NUM_BANKS - 1))`
 
-lane = swizzled_bank ^ (row & (NUM_BANKS-1))
+   slot/address is derived from `row`/`col` plus the `base` pointer.
+3. Drive `addr` and `we` into the selected bank and write `data_in`
 
-Diagrams:
+### Read (SA fetch phase)
 
-https://app.diagrams.net/#G1ElCZMM-KjPGufnR3GiQcNenLo1k3HUEb#%7B%22pageId%22%3A%22Tro5ICBytG0uPzhBu2ZE%22%7D
+1. SA requests a logical `(row, lane)` vector
+2. Frontend computes the inverse mapping and gathers `LANES` words from banks (via multi-port or time-multiplex)
+3. Assemble `data_out` in logical lane order and assert `valid_out`. SA consumes when `ready_out` is asserted
 
-- Not so early RTL input signals
+---
 
-    - For each vec_if and sys_if:
+## Next steps (short term)
 
-        - [14:0] start_addr,
-        - [4:0] row_id,
-        - [4:0] col_id,
-        - [4:0] row_len,
-        - [4:0] col_len,
-        - isCol
-
-
-- Not so early RTL output signals
-
-    - slot_mask
-    - shift_mask
-    - stall_sys
-    - done_sys
-    - done_vec
-    - [31:0] arr_sys
-    - [31:0] arr_vec
-      - Data might be padded if *_len $$\neq$$
-
-
-Next Steps:
-
-- RTL Diagram complete by Sunday
-    - Data I'd need from the Systolic Array
-- Start working on microarchitecture of front-ends
+- Complete the RTL block diagram (include swizzle/inverse-swizzle, bank interfaces, arbiter, config block, and handshakes) — target: Sunday
+- Finalize the I/O contract (data widths, LANES, pipelining, handshake semantics) with SA owners
+- Implement and validate swizzle / inverse-swizzle RTL and a small testbench
+- Design bank arbiter and replay logic; model a tile load/store controller and slot-mask generator

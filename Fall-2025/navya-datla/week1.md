@@ -1,6 +1,6 @@
 State: I am currently not stuck or blocked. 
 
-Notes on 437 TB: 
+Notes: 
 
 Chapter 7
 - Pipelining

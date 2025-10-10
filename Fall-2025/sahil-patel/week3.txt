@@ -1,0 +1,49 @@
+I'm not stuck with anything
+
+
+PROGRESS
+
+Learning how PPCI’s frontend and backend fit together.
+Finding spots where we can change PPCI (parser + codegen).
+Adding new keywords to the parser.
+
+DETAILS ON PROGRESS
+
+Understanding PPCI:
+-Read PPCI docs and sample custom arches.
+-Traced the path: source > parser (AST) → IR (when used) > instruction selection/encoding > asm printer.
+-Marked where our ISA forms plug in: VM, VV, VS, VI, SA (only forms defined by our ISA).
+
+Changes to frontend/backend:
+-Frontend: added grammar hooks for our keywords (register names, vector notation, and a placeholder for “theta”).
+-Backend: sketched 64-bit token fields (opcode, rd, rs1, rs2, imm/imm12) to match our ISA.
+-Wrote small round-trip tests: parse a line, build AST, and confirm no errors.
+
+New parser keywords:
+-Added register names: x0, x1, sp, ra, gp, plus vector regs: v0, v1, …
+-Added simple ops for testing: add, addi, mov.
+-Added immediates with size checks (imm, imm12). Out-of-range gives a clear error.
+-Added a “theta” rule as a placeholder so files parse now; exact meaning will come later.
+
+NOTES
+
+ISA is 64-bit:
+-We use a 64-bit instruction layout.
+-Field names are consistent: opcode, rd, rs1, rs2, imm, imm12.
+-First forms to support: VM, VV, VS, VI, SA (no VU, since it’s not in the ISA).
+
+PPCI vs LLVM (initial decision):
+-PPCI: lighter, easier to modify, faster to prototype encodings and assembly printing.
+-LLVM: more setup (TableGen, passes) but stronger optimizations and tools.
+-Week 3 decision: use PPCI now to reach “compile to assembly” sooner; keep LLVM as a future option when the ISA settles.
+
+“Theta” handling:
+-Parser accepts “theta” now using a non-semantic node.
+-We will define a lowering step later (e.g., expand into a short sequence).
+-Week 3 goal is “parse + print,” not final semantics.
+
+Data types in the parser:
+-Default integers are 64-bit (avoid silent 32-bit).
+-Vector element types vs vector width are separated.
+-Parser enforces consistent vector width inside each instruction.
+
