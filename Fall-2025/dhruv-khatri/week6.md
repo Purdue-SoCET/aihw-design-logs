@@ -11,6 +11,11 @@ Researched about PHY and FPGA testing.
 3. There are a few discrepencies in the way Tri and I handle interfaces. So, integration took a little while. 
    However, a consistent way is prefered.
 (Evidence is on [github](https://github.com/Purdue-SoCET/tensor-core/tree/memory_subsystem_dhruv))
+   - I handle interfaces differently than what most of us did in 437. In 437, each interface defined all the signals that went into that module. The inputs and outputs were the connected with assign statements. Example, a counter has an enable signal coming from a clock divider. The interface for both the counter and the clock divider will have the signal enable defined. They will then be connected with assign.
+   - I treat the interface as a bus, a collection of signals from same category. Example, timing signals are an interface, address (row, column, bank, etc), etc
+   - Modports are used to define the input/output logic for each module that uses those signals
+   - If a module uses signals from more than one interfaces, it will have all those interfaces in its port definitions
+   - FREE FROM MANUAL ASSIGN STATEMENTS!!!!!!!!
 
 ## PHY and hardware testing
 1. I incorrectly assumed PHY is a separate chip. It is always on the same die of the SoC. So, PHY logic will be needed for tape-out.
