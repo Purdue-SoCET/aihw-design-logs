@@ -12,6 +12,10 @@ No major barriers or concerns this week.
    Changes were outlined by Rishi in the Scheduler Core weekly meeting:
    <img width="1865" height="537" alt="image" src="https://github.com/user-attachments/assets/64b864a8-5c5e-4169-944e-04d4d5e776af" />
 
+   We listed down the changes needed in each stage of the pipeline. Major point to incorporate in the new pipeline was the interaction with the vector functional      unit in the execute stage, and the vector register file in the decode / issue stage.
+
+   Reasoning to continue with OOO execution: Can hide stall latencies of the pipe by issuing independent instructions in the time it takes for the dependent instruction's source operands to be ready. Trade-off is high area usage by the Issue queue, Load/store queue, reorder-buffer etc.
+   
 
 3. To understand the changes required I talked to Akshath and received this green card from him that outlines how the instructions will interface with the scratchpad GEMM controller.
    
