@@ -7,7 +7,9 @@ No major barriers or concerns this week.
 
 ## Highlights This Week
 1. For the scheduler core architecture, it has been decided to ditch the Out-of-Order execution and let compiler take the burden of arranging instructions in such a way that RAW hazards are avoided. It can do this by arranging mutliple independent instructions in between any 2 dependent instructions. If Out-of-Order execution is removed, we will not have to deal with WAR/WAW hazards.
-The idea is that the compiler will send a packet of instructions at a time that will not have dependencies within the packet. Any dependent instructions will be moved to the subsequent packet.
+The idea is that the compiler will send a packet of instructions at a time that will not have dependencies within the packet. Any dependent instructions will be moved to the subsequent packet. A packet can contain 2,3 or 4 instructions, we will decide on the exact number. Across the packets, we can still have dependent instructions, but the compiler should try to schedule independent packets in between 2 dependent packets as much as possible.
+
+Reasoning behind this choice: ML/AI workload instructions offer a ton of parallelism, much more than CPU. There is much more scope for software scheduling to take advantage of this ILP. If we remove OOO execution from hardware, we can save a lot of are and power as we can either get rid of or minimize load/store queues, issue buffers etc. Currently, the performance gain provide by all this OOO stuff in hardare is not worth the amount of are it takes. So it was decided to move all this scheduling buren to compiler.
 
 2. Akshath provided some updates to the scratchpad instructions.
    scpad.ld
@@ -68,7 +70,7 @@ sysarray.CONV
     - base_rowB 
     - base_rowC -> output
 
-   Further discussion on how the instructions for the weight loading should be designed.
+   Further discussion happened on how the instructions for the weight loading should be designed.
 
 3. Attended the systolic array's weeky meeting, further dived into the reading for systolic array from these sources:
 
@@ -82,13 +84,15 @@ sysarray.CONV
    
    Gained an understanding of the functioning of systolic array and the flow of data through the module. Now, need to apply this knowledge to separate out the GEMM controller from te current systolic array controller.
 
+   Reasoning for separating out the GEMM controller and convolution controller: Design of PEs in the systolic aray gives us the flexibility to do both GEMM ops and Conv ops, with the only difference being in how we load the inputs and weights into the array. If we deign 2 controller such that one takes care of the GEMM ops and the other takes care of the conv ops; we can reuse the whole array os PEs for both the operations by simply switching out which logic controls the systolic array at the moment.
+
 4. Logged into the ASICFAB to clone the code repo. Got Systolic Array testcases to run on any RTL changes. Ran the test commands on vanilla code to see if the setup is working properly:
    verilator -f [my file]
    
    - verilator -f [my file] from tensor_core folder
    - obj_dir/Vsystolic_array_tb`
    - gtkwave waves.vcd / dump.vcd
-   
+   Path to my directory: /home/asicfab/a/shah1470/tensor-core/
 
 ## Next Week’s Tasks
 1. To complete a draw.io diagram of the GEMM controller of systolic array by reusing some portion of the design from the current systolic array. Currently the detialed draw.io of the older systolic array controller does not exist, so need to create the diagram from the current RTL and microarch discussions.
