@@ -22,3 +22,4 @@ Some design choices were to interleave entire vector register utilizing the mod 
 # Future Plans
 - Finalize ISA
 - Vector SD Presentation
+- Verify vector register file
