@@ -55,5 +55,17 @@ Understanding how these papers implemented their vector architectures led to me 
 
 **Choice:** **Tail-agnostic**.
 
+** Top level Diagram**
 <img width="698" height="648" alt="Screenshot 2025-09-20 204411" src="https://github.com/user-attachments/assets/d8220c53-a456-4094-bb1e-ef5e501e8c26" />
+** Lane View **
 <img width="931" height="917" alt="Screenshot 2025-09-20 201357" src="https://github.com/user-attachments/assets/8c9860c4-6df1-4c27-8e45-4e7026b63a53" />
+
+3. Vector SD Presentation
+Created SD presentation
+https://docs.google.com/presentation/d/12MgjjwdMBCeS743g17ralG7Zr_uEVPV4HSEsyBEcB6I/edit?slide=id.g3805116bba5_1_5#slide=id.g3805116bba5_1_5
+
+# Future Plans
+- Integration with systollic array planning
+- Updates to the VIf, vector types, lane.sv vbank
+- Prepare for design review 
+
