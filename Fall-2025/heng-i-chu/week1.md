@@ -1,9 +1,8 @@
-# Week 1 Design Log
+# Week 1
 
-## State:
-I am not stuck with anything, don't need help right now. 
+State: I am not stuck with anything, don't need help right now. 
 
-## Progress:
+## Progress
 Review MIT Open Course chapters 7, 14 and 15.
 
 ## Chapter 7
