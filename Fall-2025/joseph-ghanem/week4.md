@@ -54,3 +54,6 @@ Understanding how these papers implemented their vector architectures led to me 
 2. **Tail-undisturbed:** Preserve old values (requires **read → merge → writeback** to avoid overwriting elements the program may later read).
 
 **Choice:** **Tail-agnostic**.
+
+<img width="698" height="648" alt="Screenshot 2025-09-20 204411" src="https://github.com/user-attachments/assets/d8220c53-a456-4094-bb1e-ef5e501e8c26" />
+<img width="931" height="917" alt="Screenshot 2025-09-20 201357" src="https://github.com/user-attachments/assets/8c9860c4-6df1-4c27-8e45-4e7026b63a53" />
