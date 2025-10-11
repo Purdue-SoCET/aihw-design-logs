@@ -6,3 +6,5 @@ State: Not stuck at the moment
 
 - VLS is now a global component since vector components are loaded and stored together at once. Not needed to be per lane, limited hardware area
 - Cross bar added for shifting to interact with systollic array
+- VBU unit for operations on mask being applied to an instruction instantly
+- 
