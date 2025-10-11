@@ -60,6 +60,8 @@ Understanding how these papers implemented their vector architectures led to me 
 ** Lane View **
 <img width="931" height="917" alt="Screenshot 2025-09-20 201357" src="https://github.com/user-attachments/assets/8c9860c4-6df1-4c27-8e45-4e7026b63a53" />
 
+This top level view shows how to optimize for performance and area and create a vector design that is able to be taped out.
+
 3. Vector SD Presentation
 Created SD presentation
 https://docs.google.com/presentation/d/12MgjjwdMBCeS743g17ralG7Zr_uEVPV4HSEsyBEcB6I/edit?slide=id.g3805116bba5_1_5#slide=id.g3805116bba5_1_5

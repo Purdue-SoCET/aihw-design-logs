@@ -1,0 +1,4 @@
+- https://www.advancedclustering.com/wp-content/uploads/2022/03/gtc22-whitepaper-hopper.pdf
+- https://pytorch.org/blog/hopper-tma-unit/
+- https://research.colfax-intl.com/tutorial-hopper-tma/
+- https://developer.nvidia.com/blog/nvidia-hopper-architecture-in-depth/

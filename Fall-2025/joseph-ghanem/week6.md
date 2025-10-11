@@ -10,7 +10,7 @@ Passed basic unit test cases, this includes the logic of dividing the mask up ba
 2) finalized Italla bit spec
 <img width="1578" height="741" alt="Screenshot 2025-10-10 223502" src="https://github.com/user-attachments/assets/bf632f48-5866-4a0d-90d0-311dee7a52d0" />
 
-Updated bit spec with everything needed
+Updated bit spec with everything needed. I decided to include an immediate value in each of the vector instructions. 
 
 # Future Plans
 - Make veggie updates (conflict logic will be awful) and make the rtl able to simnulate

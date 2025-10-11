@@ -1,4 +1,4 @@
-## NOTE: Some of the events/progress may be shared with week5 as I was not aware of the Thursday schedule for design logs.
+## NOTE: Content is a bit less because I was not aware of the Thursday alignment for design logs, after this one the schedule should be normalized to Thursday scheduling.
 
 ## State: I am not stuck with anything, don't need help right now.
 
