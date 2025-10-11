@@ -14,16 +14,15 @@ Ara2: Exploring Single- and Multi-Core Vector Processing With an Efficient RVV 1
 The Hwacha Vector-Fetch Architecture” / Hwacha Microarchitecture Manual: https://people.eecs.berkeley.edu/~krste/papers/EECS-2016-117.pdf 
 
 Understanding how these papers implemented their vector architectures led to me thinking how to best utilize PPA tradeoffs into our vector design. Below are the design choices these papers made me seriously reconsider:
-# Design Choices
 
-## Lane Count
+**Lane Count**
 - **Decision:** Start with **8 lanes**; keep the lane count **parameterizable**.
 - **Rationale:** The **systolic array** is the primary high-throughput unit; lanes provide general SIMD throughput.
 
-## Vector Register File (VRF) Slicing
+**Vector Register File (VRF) Slicing**
 - **Approach:** **Per-lane slicing**, similar to **Ara**.
 
-## Mask / Predication Model
+**Mask / Predication Model**
 - **Dedicated mask register:** `v0`
 - **Width/Capacity:** 16 bits → up to **16 masks** addressable
 - **Selection:** Immediate value indexes the active mask
@@ -31,25 +30,25 @@ Understanding how these papers implemented their vector architectures led to me 
 - **No-mask behavior:** All lanes see `vm = 1`
 - **Note:** Stride-based **shuffle/reshuffle** logic likely required for flexible masking patterns
 
-## Element Width Flexibility
+**Element Width Flexibility**
 - **Now:** `fp16`
 - **Future:** plan for `int8` (keep datapaths/VRF parameterizable)
 
-## Mask Port Pressure
+** Mask Port Pressure **
 - **Special case:** `v0` has a direct, wide read path into **MaskU** to reduce R/W port contention.
 
-## Reduction & Cross-Lane Operations
+** Reduction & Cross-Lane Operations **
 - **Plan:** Keep **separate** from per-lane VALU for simplicity (matches current implementation direction).
 
-## Vector Load/Store (VLS)
+** Vector Load/Store (VLS) **
 - **Placement:** Outside the lane; **loads are fanned into lanes**.
 - **Open question:** Can limited compute be performed directly on the load/store path?
 
-## Variable Element Length (VL)
+** Variable Element Length (VL) **
 - **Controller:** A vector controller performs **strip-mining**—splitting long vectors into iterations that fit the physical lanes.
 - **MaskU role:** Supplies zeros or performs merges as needed per iteration.
 
-## Tail Policy (when `VL < VLMAX`)
+** Tail Policy (when `VL < VLMAX`) **
 **Options**
 1. **Tail-agnostic:** Inactive elements are **don’t care**.
 2. **Tail-undisturbed:** Preserve old values (requires **read → merge → writeback** to avoid overwriting elements the program may later read).
