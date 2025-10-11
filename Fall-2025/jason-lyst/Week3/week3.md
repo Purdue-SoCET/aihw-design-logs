@@ -1,16 +1,13 @@
-# State: 
-    My only blocker is the fact that I still cannot access asicfab. <br />
+# Week 3 (September 4th - 11th)
 
-# Week 3 Progress:
-### September 14:
-       Following the meeting on Sunday, I continued reading the JDEC standard for about three hours, took notes, 
-       and understood the specifics of DRAM timing and configuration.
-### September 18th:
-        Met with the DRAM controller group. We introduced new ideas of what our individual responsibilities are, 
-        as well as discussed timing. 
-# Near Future Goals:
-### September 21st:
-        Verify timing table, review DDR PHY interface.
-### October 5th:
-        Have working SystemVerilog code for the non-blocking controller ready for debugging.
+## State: 
+        I am not stuck with anything right now nor do I need help. 
+## Progress:
+### September 5th, 6th, and 7th:
+        I have read through Chapters 10-13 of the Jacob Ng "Memory Systems" textbook. 
+        I now have a much better understanding of DRAM terminology and the associated timing constraints needed on the memory controller.
+        Pdf file of notes is posted in this directory.
+## Near Future Goals:
+        My near future goals include reading the JDEC standard and then assisting Dhruv and Tri in verifying their timing constraints for 
+        their blocking DRAM memory controller.
 

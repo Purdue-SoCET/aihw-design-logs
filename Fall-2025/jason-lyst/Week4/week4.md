@@ -1,16 +1,17 @@
-# State: 
-    Although I have access to asicfab, I am getting another weird prompt for a password I do not have, and any
-    wrong attempt logs me out. Therefore, I still cannot use asicfab. 
+# Week 4 (September 12th - 18th)
 
-# Week 4 Progress:
-### September 21st:
-    Verified timing constraints.
-### September 23rd:
-    Met online with Dhruv to discuss integration and testing of current blocking DRAM module.
-### Personal Progress
-    Stalled from creating testbenches due to asicfab issues, however, I took notes on dfi protocol for PHY interface, as well 
-    as watched ETH lecture on DRAM controller architectures to get leads on future iterations of our design.
-# Near Future Goals:
-### September 28th:
-        Verify top DRAM controller with Micron's DRAM module. 
+
+## State: 
+        I have one blocker, which is the fact that I do not have access to asicfab. Individual assignments were not quite clear to me.
+
+## Progress
+### September 14:
+       Following the meeting on Sunday, I continued reading the JDEC standard for about three hours, took notes, 
+       and understood the specifics of DRAM timing and configuration. Notes posted in pdf in this directory. 
+### September 18th:
+        Met with the DRAM controller group. We introduced new ideas of what our individual responsibilities are, 
+        as well as discussed timing. I know that verifying timing constraints is necessary, but I am not so sure about individual assignments.
+## Near Future Goals:
+        Verify timing table, review DDR PHY interface and consider it as an option for a possible tapeout.
+
 
