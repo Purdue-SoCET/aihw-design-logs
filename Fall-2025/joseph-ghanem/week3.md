@@ -17,7 +17,7 @@ The RTL implementation includes multiple parts:
 - Bank Gen
 - Mini operand buffer
 
-Some design choices were to interleave entire vector register utilizing the mod operator. The conflct variables track when any conflicts occur. 
+Some design choices were to interleave entire vector register utilizing the mod operator. The conflct variables track when any conflicts occur. An FSM is utilized to handle any conflicts.
 
 # Future Plans
 - Finalize ISA
