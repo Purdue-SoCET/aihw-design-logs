@@ -10,6 +10,17 @@
 - We have fixed latency guarantees from all of our functional units other than load/stores
 - we also have guarantees that the functional units are pipeline so that we can issue an instruction every cycle
 
+Predication
+- Predication instructions are 
+- p1? r1 > r2 p1 is 1 if r1 > r2
+- p1 <normal instr> the normal instruction will only writeback if p1 is 1
+- !p1 <normal instr>
+- Allows us to convert control dependencies into data dependencies
+- Predicate registers like p1 allow us to hold x amount of predications and in a way x amount of branches
+- These only act in WB stage
+- Main issue is for predicated sw since p1 may not be resolved by the time the sw is being issued
+- The solution may forward the result to resolve the sw to prevent stalls
+
 Vectorcore
 - Veggie banked special 5th mask reg
 - Vector Controller? Check lengths 
