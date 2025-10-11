@@ -18,7 +18,7 @@ https://docs.google.com/presentation/d/1zGqpBYe6Qenp7KOvmsEcLhguIXTZgIaqBRJG4hOV
 5) Lane.SV Pseudocode
 <img width="535" height="519" alt="image" src="https://github.com/user-attachments/assets/83bbf5b3-94b2-4a8b-a33e-cae245604a0c" />
 
-Utilized FU pipeline latch to also be part of the counter. Do not have the FU's' to fully implement yet but setup the structs for in/out and general structure.
+I made a design chouse to utilize the FU pipeline latch to also be part of the counter. Do not have the FU's' to fully implement yet but setup the structs for in/out and general structure.
 
 # Future Plans
 - Finalize bit spec
