@@ -6,11 +6,11 @@ Progress:
 
 With the Vector Core being implemented as a "Vector Datapath" the top level needs to look a little different. The Veggie File and Scoreboard sit in the Dispatch/Issue stage, the vector execute stage lives in the Scheduler execute stage, and it gets outputted directly to the scheduler WB stage. The vector top level was designed to service all the main instructions that we are hoping to support.  
 
--SVFU (specialized vector functional unit) supports all the "specialized" instructions such as e^x, sqrt etc 
--Reduction FU supports all reduction instructions 
--VALU (Vector ALU) supports FP16 adds, subtracts, bitwise ops for masking, etc 
--VLS (Vector Load Store) is what interfaces with the scratchpad memory for vectors.  
--Veggie File (Vector register file of course) is the vector register file  
+- SVFU (specialized vector functional unit) supports all the "specialized" instructions such as e^x, sqrt etc 
+- Reduction FU supports all reduction instructions 
+- VALU (Vector ALU) supports FP16 adds, subtracts, bitwise ops for masking, etc 
+- VLS (Vector Load Store) is what interfaces with the scratchpad memory for vectors.  
+- Veggie File (Vector register file of course) is the vector register file  
 
  
 Since power and area are not a concern in this design it was optimized to support maximum instruction parallelism. The VALU has 32 instances to accommodate the full 32 lanes so adds, subtracts, etc can be done in 1 cycle * FU latency. Since the SVFU contains larger FUs it has 8 lanes to accommodate for area constraints. The Reduction FU will have 16 lanes and operate in a "tournament bracket" fashion. VLS does not need any duplicated logic as it only needs to load/store 1 vector at a time that happens in one go. Notable design decisions include registers within the FUs to store intermediate values to prevent high Veggie File write/read bandwidth. Additionally reducing the number of lanes in Reduction and SV FUs to reduce the area. These are the uncommon case so it is okay to add a little bit of latency for more area. You are only able to issue 1 instruction at a time although you can store instructions in multiple FUs 
