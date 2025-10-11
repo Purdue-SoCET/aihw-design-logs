@@ -4,6 +4,12 @@
 
 ## Progress: 
 - Met with Sooraj to flush out details on VLIW/EPIC implementation
+- Instructions will be 4x48 bits per instruction and 16 check and set bits
+- check will check for prior dependencies and set will set the packets own dependency
+- Scheduler team is soley responsible for all scalar ops
+- Planning for 2, 3, 4 "lanes" of execution
+- 4 banks for scalar and vector register files one read and one write port
+- Sooraj noted we may need many more for scalar
 - Key point is that we will implement 8 dependency registers that will limit in flight instructions to 8 instructions and enable basic out of order abilities by checking and setting dependency registers
 - Diagram for VLIW instructions and full crossbar created
 - Readings: 
@@ -61,3 +67,5 @@ Questions:
 - We will make a document to track the ISA and architecture to provide to the compiler team
 - Contact teams to find worst case guarantees for # of cycles for execution times
 - Clean up ISA and bitspec
+- Ask cole regarding scalar multiply divide mod
+- question could a packet set more than one dependency ie writing to two vector registers liek two wide loads??
