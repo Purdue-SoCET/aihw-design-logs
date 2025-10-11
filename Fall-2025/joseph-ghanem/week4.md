@@ -34,28 +34,28 @@ Understanding how these papers implemented their vector architectures led to me 
 - **Now:** `fp16`
 - **Future:** plan for `int8` (keep datapaths/VRF parameterizable)
 
-** Mask Port Pressure **
+**Mask Port Pressure**
 - **Special case:** `v0` has a direct, wide read path into **MaskU** to reduce R/W port contention.
 
-** Reduction & Cross-Lane Operations **
+**Reduction & Cross-Lane Operations**
 - **Plan:** Keep **separate** from per-lane VALU for simplicity (matches current implementation direction).
 
-** Vector Load/Store (VLS) **
+**Vector Load/Store (VLS)**
 - **Placement:** Outside the lane; **loads are fanned into lanes**.
 - **Open question:** Can limited compute be performed directly on the load/store path?
 
-** Variable Element Length (VL) **
+**Variable Element Length (VL)**
 - **Controller:** A vector controller performs **strip-mining**—splitting long vectors into iterations that fit the physical lanes.
 - **MaskU role:** Supplies zeros or performs merges as needed per iteration.
 
-** Tail Policy (when `VL < VLMAX`) **
+**Tail Policy (when `VL < VLMAX`)**
 **Options**
 1. **Tail-agnostic:** Inactive elements are **don’t care**.
 2. **Tail-undisturbed:** Preserve old values (requires **read → merge → writeback** to avoid overwriting elements the program may later read).
 
 **Choice:** **Tail-agnostic**.
 
-** Top level Diagram**
+**Top level Diagram**
 <img width="698" height="648" alt="Screenshot 2025-09-20 204411" src="https://github.com/user-attachments/assets/d8220c53-a456-4094-bb1e-ef5e501e8c26" />
 ** Lane View **
 <img width="931" height="917" alt="Screenshot 2025-09-20 201357" src="https://github.com/user-attachments/assets/8c9860c4-6df1-4c27-8e45-4e7026b63a53" />
