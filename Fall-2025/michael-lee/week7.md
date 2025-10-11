@@ -5,8 +5,7 @@
 ## Progress: 
 - Met with Sooraj to flush out details on VLIW/EPIC implementation
 - Key point is that we will implement 8 dependency registers that will limit in flight instructions to 8 instructions and enable basic out of order abilities by checking and setting dependency registers
-- Diagram for packetized instructions and full crossbar created
-- Meetings with vectorcore team to flush out width of execution units and
+- Diagram for VLIW instructions and full crossbar created
 - Readings: 
 - https://www.engineering.iastate.edu/~zzhang/courses/cpre581-f06/lectures/Lecture24-1p.pdf
 - https://www2.seas.gwu.edu/~bhagiweb/cs211/lectures/epic.pdf

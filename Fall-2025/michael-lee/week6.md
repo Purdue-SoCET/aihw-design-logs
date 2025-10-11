@@ -5,7 +5,7 @@
 ## Progress: 
 - Diagram for packetized instructions and full crossbar created
 - Diagrams at https://drive.google.com/file/d/1M_-irWdD2tf2M9vajaq4RTc4f5l0vSWu/view?usp=sharing
-- Meetings with vectorcore team to flush out width of execution units and
+- Meetings with vectorcore team to flush out width of execution units and cycle time guarantees
 - Primary issue for packetized instructions is stalling for multiple issues to same functional unit
 - We have fixed latency guarantees from all of our functional units other than load/stores
 - we also have guarantees that the functional units are pipeline so that we can issue an instruction every cycle
@@ -29,6 +29,4 @@ Vectorcore
 
 
 ## Next Steps:
-- We will make a document to track the ISA and architecture to provide to the compiler team
-- Contact teams to find worst case guarantees for # of cycles for execution times
--
+- Ask Sooraj and Rishi about design changes and how predication
