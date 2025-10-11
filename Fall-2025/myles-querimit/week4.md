@@ -5,9 +5,23 @@
 
    Attached are photos of the simulations I made.
   ![Activation Flow](./Images/activation_flow.png)
+
+  Image Description - 
+    Visualizations of different stats for given kernel size in convolution. PE utilizaiton is show, overall flow pattern for activations, and the dataflow. 
+
   ![HW Matrix](./Images/hw_matrix.png)
+    
+  Image Description - 
+    Visualizations of how activations flow through convolutions. As data goes right and down, the values slowly turn to actual usable figures. 
+
   ![HW Old Simulation](./Images/HW_oldSim.png)
+    Image Description - 
+    Old HW simulation, produces an image of a given input, demonstrating zero padding and how the kernel could look at various positions. 
+
   ![RV vs KS Old Simulation](./Images/RVvKS_OldSim.png)
+
+ Image Description - 
+    Copmarison between the input kernel and what weights it would be multiplied with. 
 
   With this I also started reading a collection of documents to better understand PSUM routing, our next task before starting to write RTL.
 

@@ -19,6 +19,9 @@
     - Scratchpad RTL 
         How scratchpad interacts with rest of system 
 
+Reasoning Behind Design Choices   
+  NCHW is often more beneficial in comparison to other layouts as it is easier to work with. With memory, NCHW, is better as it allows for contigous scans across width. With W being the most inner dimension, sliding across windows read/write contigous cahce lines which is great for bandwidth. In addition, it makes everything more predictable, giving us easier heights and width to mess around with.
+
 ## Notes
    Changing the tensor architecture should not be that bad, which leaves me with more time working on routing and finding out a way to see what values are actually useful. Getting the simulation done is incredibly important, as this will be able to prove that convolution should work. 
 

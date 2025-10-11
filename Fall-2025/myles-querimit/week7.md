@@ -25,6 +25,9 @@ vegg.valid
 With this done, I started researching potential ways that we can split larger kernels up. Below is a photo of my current progress.
    ![bigtosmallkernel](./Images/kernel_tiling_computation.png)
 
+Image Description -
+Example and pseudo code on how software would accomplish tiling a larger kernel to a smaller one for actual use. 
+
 With this I tried to calculate how utilized all of our PE's would be with the algorith displayed. I still have to verify with the team to see if this is the way that we should approach splitting up larger kernels, as we still need to maintain speed through all of our usecases. 
 
 ## Tasks
