@@ -1,6 +1,6 @@
 State: I am stuck on how to properly bank my vector register file and what the internal structure will look like. 
 
-Progress:
+#Progress:
 1) Top level RTL diagram:
 <img width="854" height="586" alt="Screenshot 2025-09-21 122608" src="https://github.com/user-attachments/assets/13d125b3-58ec-43a8-b955-7ea3d74129cf" />
 
@@ -33,7 +33,7 @@ I drafted an example of what a vector module may look like for my own practice. 
 Detailed custom ISA for vector core with bit spec. I decided to devise the ISA into 3 types VV = Vector Vector, VS = Vector Scalar, VI = Vector Immediate. Instead of specifying another 8 bits for a vector mask select I included only 1 bit to specify if you are using a mask or not. If it is high it will automatically pull from the v0 register which is the specialized mask register. This saves 6 bits in the ISA and allows us to do it entirely in 32 bits. Tradeoffs include only being able to store 1 mask and maybe having an extra instruction to set the mask before using it.  
 
   
-Future Plan: 
+#Future Plan: 
 
 - Vector Register File Microarchitecture 
 
