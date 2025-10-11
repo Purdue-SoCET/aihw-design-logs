@@ -5,13 +5,21 @@ On Sunday, we met as a group and defined the "phases" of interface that the GSAU
 
 On Tuesday I met with the GSAU team and the same member of verification and we further refined the data transfer phasing, fixing our RTL diagram with a couple more signals we missed on the first draft, such as ready valid with WB Buffer. After this meeting I started making the RD register queue for the GSAU. We also created/changed the GSAU interface file from some of the findings of this meeting.
 
-On Wednesday I attended the vector core meeting and got assigned to the operand buffer in the veggie file. I learned of the similarities between the GSAU queue, and this sort of queue and decided to use a parameterizable synchronous FIFO, so we can reuse the same code in the many places that employ this FIFO buffering. I found an online implementation and adapted it to use in both circumstances, getting a good start on the GSAU top level code (only the control unit should be left).
+On Wednesday I attended the vector core meeting and got assigned to the operand buffer in the veggie file. I learned of the similarities between the GSAU queue, and this sort of queue and decided to use a parameterizable synchronous FIFO, so we can reuse the same code in the many places that employ this FIFO buffering. I have adapted an implementation to use in both circumstances, getting a good start on the GSAU top level code (only the control unit should be left).
 
-FIFO: https://github.com/Purdue-SoCET/tensor-core/blob/tensor_compute_accelerator_saandiya/src/modules/sync_fifo.sv
+Generic Synchronous FIFO: https://github.com/Purdue-SoCET/tensor-core/blob/tensor_compute_accelerator_saandiya/src/modules/sync_fifo.sv
 GSAU Interface: https://github.com/Purdue-SoCET/tensor-core/blob/tensor_compute_accelerator_saandiya/src/include/gsau_if.vh
 
+Rough Illustration of waves and clock cycles for phased data transmission:
+![alt text](image-1.png)
+
 ## Tasks
-   I will work with Joseph to better understand the operand buffer and get a detailed specification so I can start code on the buffer. This should not be too hard to create, I also plan to make a small testbench for now, most of the verification will likely involve the Veggie as an IP and verify the whole thing. I will also likely pitch in some help on the GSAU testbench where necessary, to get a working product by the 10/19 deadline. I will also have to meet with the GSAU team in the upcoming week to complete the abstract to get approved by a GTA and submitted.
+   I will work with Joseph to better understand the operand buffer and get a detailed specification so I can start code on the buffer. This should not be too hard to create, I also plan to make a small testbench for now, most of the verification will likely involve the Veggie as an IP and verify the whole thing. I will also likely pitch in some help on the GSAU testbench where necessary, to get a working product by the 10/19 deadline. I will also have to meet with the GSAU team in the upcoming week to complete the abstract to get approved and submitted. Due to break, I will have to see how much I can complete within the week, and how much will get pushed to the following week.
+
+## Note
+   We considered how the ISA should accomodate the three phases of transmission. We have implemented the gemm instruction that either loads a input or both a weight AND a psum.
 
 ## Future Plans 
    Lots of the current work is getting the code done and verified in a basic state for later integration. We forsee the workload becoming less in the future once we are done with the design and basic verification for all of the subunits we are responsible for.
+
+   Current deadline is getting the subunit done and verified by 10/19
