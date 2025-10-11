@@ -9,12 +9,13 @@ State: Not stuck at the moment
 - VBU unit for operations on mask being applied to an instruction instantly
 
 2) Systollic array convolution offload
+
 Met with Saandiya and Nikhil to discuss how we can change the Vector top level to Systollic Array. 5 bits will be added to the ISA and an additional functional unit will talk to Systollic array inside the lanes itself.
 
-3) Prepared for Design Review
+4) Prepared for Design Review
 https://docs.google.com/presentation/d/1zGqpBYe6Qenp7KOvmsEcLhguIXTZgIaqBRJG4hOVtog/edit?slide=id.p#slide=id.p
 
-4) Lane.SV Pseudocode
+5) Lane.SV Pseudocode
 <img width="535" height="519" alt="image" src="https://github.com/user-attachments/assets/83bbf5b3-94b2-4a8b-a33e-cae245604a0c" />
 
 Utilized FU pipeline latch to also be part of the counter. Do not have the FU's' to fully implement yet but setup the structs for in/out and general structure.
