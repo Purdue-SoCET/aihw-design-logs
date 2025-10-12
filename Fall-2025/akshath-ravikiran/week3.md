@@ -33,7 +33,7 @@ Exciting!
     - However, they work on fundamentally different logic. SPAD Banks store 16 bit values, and are deep. Alternatively, the Cache Banks store large blocks of data, and contain ways/sets within them, thus wide.
         - Cache Banks need to independently deal with loads based on the ways MSHRs are allocated and popped, and require a HW-control mechanism to handle.  
         - SPAD Banks are SW controlled, and the loads are dealt with for each tile at a shot. Which means you can unify and load data in large busses, and then map them into the SRAM Banks. 
-        > The workload is very regular and domain-specific, so we can amortize the cost of having control-logic in silicon and unncessary wiring (each bank having it's own port into the AXI-Bus => DRAM Cntrl.)
+        > **The workload is very regular and domain-specific, so we can amortize the cost of having control-logic in silicon and unncessary wiring (each bank having it's own port into the AXI-Bus => DRAM Cntrl.)**
 - Update: 
     - Backend takes in some "descriptors" regarding the tile to be loaded, and the logical matrix metadata, and fills its own queue that goes into the AXI-Bus<->DRAM-Cntrl. pipe. 
     - Responses are retrieved as 512b vectors, and then routed in-order STATICALLY into the banks. You do not need each bank to deal with loading it's own data, and how the data needs to get routed once it enters the overall scratchpad.  
