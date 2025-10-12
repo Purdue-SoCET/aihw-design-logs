@@ -26,7 +26,8 @@
 ## Arch Updates
 #T0. Cleaned up last semester's [RTL](./assets/ConvController_TMA-Page-2.drawio.png). 
 
-#C0. Crossbar will be a high latency, and large area module. We will not use the Mesh crossbar -- guarantees 1 cycle latency, but high area, power and a PD nightmare. We will be developing MIN - Multi Stage Interconnection Networks - based crossbars. 
+#C0. Crossbar will be a high latency, and large area module. We will not use the Mesh crossbar -- guarantees 1 cycle latency, but high area, power and a PD nightmare. 
+- **We will be developing MIN - Multi Stage Interconnection Networks - based crossbars.**
 
 #S0. We will not be performing paging in the Scratchpad at the SW level. 
 - Context: 
