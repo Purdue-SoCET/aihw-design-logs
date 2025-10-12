@@ -1,3 +1,5 @@
+## Week 3
+
 ## State: I am not stuck with anything, don't need help right now. 
 
 ## Sub-Team - Vector Core
