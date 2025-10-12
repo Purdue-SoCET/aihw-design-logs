@@ -1,0 +1,5 @@
+- https://www.cs.mcgill.ca/~cs520/2024/slides/insn_scheduling.pdf
+- https://www.cs.rutgers.edu/courses/415/classes/spring_2016_zhang/lectures/lec04.pdf
+- https://aktemur.github.io/cs544/lectures/chapter%2012%20instScheduling.pdf
+- https://booksite.elsevier.com/9780120884780/Manual/Global_Register_Allocation_via_Graph_Coloring_Part_II.ppt
+- https://www.stuffedcow.net/files/gpuarch-ispass2010.pdf (interesting way of how they found latency of FUs from instructions)

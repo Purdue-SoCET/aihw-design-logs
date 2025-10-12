@@ -1,7 +1,7 @@
-> Overview.
+> Overview of the week's problems, and successes. 
 
 ## State
-I am not stuck.
+[NONE, STALLED, STALLING]
 
 ## Arch Updates
 [None.] 
