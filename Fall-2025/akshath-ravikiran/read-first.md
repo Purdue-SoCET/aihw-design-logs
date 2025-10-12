@@ -24,7 +24,7 @@ Each `Arch Update` point gets mapped to a specific ID. This helps us track how m
 #T -> Top-Level Interfaces | Latest: T3
 #F -> Frontend | Latest: F2
 #B -> Backend | Latest: B3
-#C -> Crossbar | Latest: C2
+#C -> Crossbar | Latest: C3
 #S -> SW/ISA | Latest: S2
 ```
 

@@ -29,17 +29,20 @@
 
 ## Arch Updates
 B3: Backend will now contain some kind of FSM, taking care of this throttling of every request into 8-deep bursts. All of these mini-request IDs within a burst will be seperated by `log_2(64b/ELEMENT_SIZE)` bits indicating which slice of the burst it belongs to. 
-C2: We've decided to analyze different designs, implement in RTL and then synthesize them. 
-    - Naive Crossbar. Baseline. Lat = 1. Area = Worst. Freq = Horrible.
-    - Benes MIN. Lat = 9 + 5. Area = Better. Freq = Mid. 
-    - Batcher MIN. Lat = 15. Area = Little worse than Benes. Freq = Better than Benes. 
+
+C3: We've decided to analyze different designs, implement in RTL and then synthesize them. 
+- Naive Crossbar. Baseline. Lat = 1. Area = Worst. Freq = Horrible.
+- Benes MIN. Lat = 9 + 5. Area = Better. Freq = Mid. 
+- Batcher MIN. Lat = 15. Area = Little worse than Benes. Freq = Better than Benes. 
+
 T3: Here is the latest [RTL Diagram](./assets/v4_rtl.png) outlining the **[Frontend/Backend -> Head -> Stomach -> Tail -> Frontend/Backend]** flow within the scratchpad.
+![RTL Diagram](./assets/v4_rtl.png)
 
 ## Progress
+- [Crossbar Reading List](./assets/crossbar-reading-list.md) has been updated with a summary of the designs we're going for, and the "What" of the options. 
 - Completed the [V4 RTL Code](https://github.com/Purdue-SoCET/tensor-core/tree/scratchpad_main/rtl/modules/memory/scratchpad). 
     - Literally, only Frontend and Backend units are left. 
     - Crossbar modules just extract all the required design choices. Naive is implemented. Haejune needs to make his network parameterizable, and then embed it into the `rxbar.sv` and `wxbar.sv` modules.
-- [Crossbar Reading List](./assets/crossbar-reading-list.md) has been updated with a summary of the designs we're going for, and the "What" of the options. 
 - Completed [7 weeks worth](https://github.com/Purdue-SoCET/aihw-design-logs/blob/main/Fall-2025/akshath-ravikiran/) of Design logs :) 
 - Re-arranged the [codebase](https://github.com/Purdue-SoCET/tensor-core/tree/848ad6f5c47980ae20f4b58c27c00f1f7caf042a), and made a cleaner Makefile for people to work with the code. 
 - Compiled an [instruction-scheduling-reading-list.md](./assets/instruction-scheduling-reading-list.md). Want to work on the IR -> CodeGen optimization flow w/ Timmy and help the compiler team. 

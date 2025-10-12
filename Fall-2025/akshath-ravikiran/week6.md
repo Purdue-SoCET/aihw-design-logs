@@ -22,7 +22,7 @@
         - Frontend is already built to sustain this behaviour (@Emmi and @Rafael)
 
 ## Arch Updates
-- [Crossbar Reading List](./assets/crossbar-reading-list.md) outlines the resources we've collated for our literature review. 
+C2. [Crossbar Reading List](./assets/crossbar-reading-list.md) outlines the resources we've collated for our literature review. 
 
 ## Progress
 - This week was spent brainstorming the Crossbar, and discussing with Thomas Munson and Abinands regarding how tradeoffs map into VLSI Design. I think this is very important, and we need to think about it. 
