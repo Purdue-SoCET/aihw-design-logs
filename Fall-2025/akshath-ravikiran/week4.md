@@ -27,9 +27,10 @@
     - Frontend can send 2 R/W requests and Backend can send 1 R/W request at a time [Into the SRAM, not DRAM]. 
     - This means we need a muxing/credit-control logic on which of these requests can grab the pipe into which of the Scratchpads. 
     > This will get simplified/optimized in [Week 6](./week6.md).
-    
+
 #F0. Updated the RTL to reflect the Frontend datapath to the VC. 
 ![design_review](./assets/design-image.png)
+
 #S1. Atalla ISA has been updated to reflect the Vector Core offload, as discussed in the [last week's design log](./week3.md). Find the latest ISA Spec [here](https://docs.google.com/spreadsheets/d/1yDJ_oH0EXGIE4-4wVcwTeaw1Bg1vpoUSIkgTK3qDw_w/edit?usp=sharing). 
 ![isa-changes](./assets/isachanges.png)
 

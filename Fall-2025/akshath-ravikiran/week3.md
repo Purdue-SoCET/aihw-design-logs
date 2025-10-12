@@ -27,6 +27,7 @@ Exciting!
 
 ## Arch Updates
 #B1. We've decided that the Backend doesn't need to hold multiple MSHR-like queues next to each bank. Interactions between Backend and DRAM are vector based.
+
 - Context: 
     - Initially, we wanted to model the SRAM Banks like our Split Transaction Banks from the ICache/DCache. 
     - However, they work on fundamentally different logic. SPAD Banks store 16 bit values, and are thus, longer than wider. Alternatively, the Cache Banks store large blocks of data, and contain ways/sets within them.
@@ -35,6 +36,7 @@ Exciting!
 - Update: 
     - Backend takes in some "descriptors" regarding the tile to be loaded, and the logical matrix metadata, and fills its own queue that goes into the AXI-Bus<->DRAM-Cntrl. pipe. 
     - Responses are retrieved as 512b vectors, and then routed in-order STATICALLY into the banks. You do not need each bank to deal with loading it's own data, and how the data needs to get routed once it enters the overall scratchpad.  
+
 #T1. Updated the RTL to visualize the Vector Core and Systolic Array communication. 
 ![rtl_updated](./assets/rtl_updated.jpeg)
 

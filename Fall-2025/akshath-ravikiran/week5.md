@@ -29,6 +29,7 @@
 
 ## Arch Updates
 #F1. #B2. We've moved around the control-data flow in the Frontend to allow for II=1 pipeling, which means Scratchpad can "accept" ops every cycle, and "respond" in parallel too. 
+
 - Context: 
     - In [Week 4](week4.md), we discussed the 2 SPAD Arrays, and our design choices. 
     - There is still the problem of 2 Frontend **Req/Res** Sets and 1 Backend set. This requires some Grant/Slotting logic, like how CPUs have Select/Issue logic. 
@@ -39,6 +40,7 @@
     - Updated the Backend to have 2 sets of Req/Res too. 
     - Let each Frontend-Backend set be clustered together into one pipe, and **statically** map into a single SPAD Array. 
     - Super simple logic, and RTL `generate` loops. 
+
 #S2. ISA has been edited to define VREG <-> Scratchpad interactions to be defined as 2 Vector load/stores each cycle. 
     - One of them can be masked out (uncommon case).  SW should be able to reorder to fill up these `load-slots` in the GVLS every cycle. 
     - [Week 6](./week6.md) will define the real HW change to accomodate this instruction in a streaming-manner. 
