@@ -29,6 +29,6 @@ At the Sunday work meeting I was ironing out errors in the top level vector inte
 ![](images/vaddsub_interface.png)
 
 ## Future Steps
--Verify the VAddSub Module
--Write a Test Bench For VAddSub
--Synthesize VAddSub Module
+- Verify the VAddSub Module
+- Write a Test Bench For VAddSub
+- Synthesize VAddSub Module
