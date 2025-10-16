@@ -157,17 +157,6 @@ Suggested immediate actions:
 2. Remove redundant latches in `frontend.sv` (candidate: drop either l1a/l1c or l1b/l1d per IDX depending on instruction type) and update `frontend` accordingly
 3. Run the frontend unit testbench and smoke-test basic rd/wr flows with single-channel active
 
-## Repository / tooling improvements
-
-- Improve repository layout (top-level `sim/`, `rtl/`, `tb/`, `docs/`) so frontend RTL, testbenches, and diagrams are discoverable
-- Add a small `Makefile` to standardize common flows:
-
-  - `make sim` — run a quick behavioral simulation (iverilog/vvp or Questa if available)
-  - `make lint` — run syntax/lint checks
-  - `make docs` — regenerate / export diagrams or markdown
-
-- Put type headers (`scpad_types_pkg.vh`) and interface files (`scratchpad_if.vh`) under `include/` and update include paths in RTL for reproducible builds
-
 ## Abstract for Purdue Fall Undergraduate Research Expo 
 
 ## Next steps
