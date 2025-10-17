@@ -9,7 +9,7 @@
 
 3. There was another discussion for how the AXI bus will give us information. As mentioned before the bus can only return 64 bits at a time thus we will have to keep track of how many burst we have seen and how many burst were need to complete our request. Once the request is known to have completed is when we can validate our SRAM write latch. Now the only queue in our system will be for DRAM memory request as DRAM is slow and will be busy most of the time. Since the number of needed burst isn't necessarily known we will have to calculate how many burst is are need then latch that information. Then our check will simply compare that latch to the seen burst counter.
 
-4. Finally, since the amount of queues has been reduced and the only needed queue is a dram request queue then the dram_read and dram_write queues will be placed combined. This means a new module will be created and the queue there will be able to store all needed information.
+4. Finally, since the amount of queues has been reduced and the only needed queue is a dram request queue then the dram_read and dram_write queues will be combined. This means a new module will be created and the queue there will be able to store all needed information.
 
 5. The following code will provide the basic understanding of our old design.
 
