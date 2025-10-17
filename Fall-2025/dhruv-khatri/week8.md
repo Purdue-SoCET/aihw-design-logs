@@ -40,7 +40,7 @@ I am not stuck with anything. Although I don't know how to generate coverage rep
 ## Further discussion on the non-blocking controller architecture
 * ![](./images/week%208/DDR4_controller-Non-Blocking-Bank-Queue.drawio.png)
 * picture credits - Jason lyst, with updates by Tri Than
-* Per bank queue has been finalized becuase easier to schdule request
+* Per bank queue has been finalized becuase easier to schedule request. Limited choices to head of the queues
 * Bank queue before command fsm
     + Initially, command FSM was before bank_queue and bank queue would hold the commands from the command FSM
     + That meant we neede one more queue for storing commands before the command fsm becuase it needed to fully process the request (PRE -> ACT -> RD etc)
