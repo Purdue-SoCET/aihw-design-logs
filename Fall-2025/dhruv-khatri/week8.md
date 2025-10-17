@@ -5,6 +5,7 @@ I am not stuck with anything. Although I don't know how to generate coverage rep
 * Continue the integration testing of the control unit from last week
 * Add test cases to address mapper for coverage
 * Further discussion on the non-blocking controller architecture
+* All RTL code related changes can be found on my [github branch](https://github.com/Purdue-SoCET/tensor-core/tree/memory_subsystem_dhruv)
 
 ## Continue the integration testing of the control unit from last week
 * Row conflict test case added
