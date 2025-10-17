@@ -5,8 +5,8 @@ I am not stuck
 - Fall Break 13th-14th October.
 - During Vector Core meeting (10/15) we discussed on some ISA changes, verfication plans and timeline.
 
-### Evidence of Progress
-## ISA Changes
+## Evidence of Progress
+### ISA Changes
 - We also need a left shift in addition to the right shift for masking to be properly done. Previously, I was under a wrong impression of how masking will happen in vector core, but turns out left shift is happening implicitly. So we do need a left shift.
 - shift.vs (scalar reg) is now a vs type
 - For shift.VI use imm5 to specify amount of shift and use imm8 (1 bit to specify left or right)
@@ -16,7 +16,7 @@ I am not stuck
 ![Screenshot 2025-10-16 at 9 57 51 PM](https://github.com/user-attachments/assets/b34526b7-4b6d-4bfb-96ff-c75fe78f8df1)
 ![Screenshot 2025-10-16 at 9 58 22 PM](https://github.com/user-attachments/assets/a8b3990a-f968-42f6-b155-26631fc888b1)
 
-## Abstract
+### Abstract
 - An abstract is created and submitted by our group for the Fall 2025 Expo
 - https://docs.google.com/document/d/1gBZ6_h6uZCL9Xjy55gx3o7PBXcEfP2HXks3DoknYAj0/edit?tab=t.0
 - ```Convolution is a mathematical operation used in machine learning tasks but often becomes performance bottleneck in models like
@@ -34,16 +34,16 @@ I am not stuck
   include implementing and verifying this design, along with defining worst and best case latencies such that instruction can be
   interleaved to pipeline the process at a software level.
 
-## Verification Plan
+### Verification Plan
 - Verification plan for the gsau control unit is created by me and nikhil.
 - https://docs.google.com/document/d/1WN1tDZcZA2MwcfPBuD1hkEgETITvLbIamk2HCpjdNyk/edit?usp=sharing
 
-## Best and worst case latency for GSAU
+### Best and worst case latency for GSAU
 - The best latency for GSAU is 64 cycles (32 inputs cycle + 32 psum cycle)
 - The worst case latency for GSAU might be 64 + 96 cycles, 96 comes from backpressure in the wb buffer.
 - Need to confirm this with GTAs
 
-## Code and verification
+### Code and verification
 - The code and testbench is done.
 - But the module still needs to be verified - running into some errors.
 ![Screenshot 2025-10-16 at 3 40 12 PM](https://github.com/user-attachments/assets/534ed06f-a20c-4699-a778-762871cd1be3)
