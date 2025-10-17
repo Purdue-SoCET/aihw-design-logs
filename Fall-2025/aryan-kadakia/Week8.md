@@ -20,6 +20,12 @@ Below is the RTL:
 
 I am currently in the process of putting together the RTL for the AW and W queues. A bit for logic will be added since the W channel must be locked to the AW. This means a AW request cannot continue until the W data is present. During the weekend, I decided the number of outstanding transactions we will start off to support is 4 per read and write and per memory unit. Meaning the AXI AW and AR queues are 4 entryies deep with the W queue being 4*8 = 32. I plan to keep these values parametrizable to they can be changed if needed. 
 
-After fall break, on Wednesday (10/16/25), I met with a member of my team, Tri, to discuss the current progress and steps we should take to move foward. I presented my RTL for the AR channel and got it verified. We then began discussing 
+After fall break, on Wednesday (10/15/25), I met with a member of my team, Tri, to discuss the current progress and steps we should take to move foward. I presented my RTL for the AR channel and got it verified. We then began discussing an issue we ran into during the 10/10/25 meeting with akshath. We determined that we are able to mask an entire burst but we were unsure if we could mask with in a burst. Since a burst holds 4 elements, there could be cases where masking occurs within the burst. We were able to determine that masking can be done through bytes. But will be quite tedious. 
+
+On 10/16/25, the entire DRAM team met up and put together an abstract that we had to submit for VIP. This abstract was a summary of the problem we are facing and how our solution is a step in solving it. We discussed on how memory latency is long and in a blocking implementation, bounded by the latency of the response of a memory requestand how our non-blocking will improve throughput and latency by decoupling requests and response. Once we finished the Abstract, we began to finalize the top-level for the non-blocking controller. Last week, we had two implementations, but after discussions, we decided to combine the two as it would be most optimal. Our non-blocking controller will contain an AXI subordinate, Load/store queue, Address maper, arbitration logic, and 16 bank queues with 16 command FSMs. The block diagram can be at: https://app.diagrams.net/#G18bqekF9I8oZJpSTm-BcsDvPkOPy_cdul#%7B%22pageId%22%3A%22I8VmAw3BDs1xUGdc0W6K%22%7D. It was too large for me to attach as an image in this design log. 
+
+
+## Future Steps:
+Moving forward, I would like to finalize the top-level RTL for the AXI-bus and show it to Sooraj and the rest of the DRAM team. I also would like to finish up the AW and W queue RTL. 
     
 
