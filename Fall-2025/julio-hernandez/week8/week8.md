@@ -3,7 +3,7 @@
 ### State: I am not currently stuck or blocked.
 
 ### Progress
-1. The main progress made was in having the initial modules coded. This is however already out of date as once the initial coding was done a discussion was had about whether or not some were necessary. The outdate modules will still be here for documentation purposes.
+1. The main progress made was in having the initial modules coded. This is however already out of date as once the initial coding was done a discussion was had about whether or not some were necessary. The outdated modules will still be here for documentation purposes.
 
 2. During a discussion it was discovered that a queue to store the request to SRAM will not be necessary. This is because the sram memory controller and data pipeline will take care of queuing sram request. It can be assumed that as soon as the backend makes a valid request and the scratchpad isn't stalled then it will fly out in the next cycle. There will still need to be a latch to catch the DRAM results and build the data, since dram can only return 64 bits at a time and we need 512. Once the data is built again we can assume it will be sent out the next clock cycle. For sram read request it might be possible to avoid latching entirely and just send it straight to the sram controller. This will 1 clock cycle and avoid latching but we will see if the timings can work out.
 
