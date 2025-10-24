@@ -141,7 +141,7 @@ module frontend #(
 endmodule
 ```
 
-## Akshath: Changes and impact
+## Changes in Vector Core <-> Frontend
 
 Akshath asked us to simplify the Vector Core <-> Frontend contract: the Vector Core will not use both read and write channels for the same unit simultaneously. This reduces duplicated signals and simplifies the frontend pipeline
 
@@ -151,13 +151,79 @@ Concrete implications:
 - Update `scpad_if.vh` / `scpad_types_pkg.vh` to document that a single channel is active at a time (or add a 1‑bit selector field) so the frontend and vector core share a clear contract
 - Verify `fe_vec_stall` and `fe_stall` interactions still meet timing after latches are removed (the pipe gating remains required)
 
-Suggested immediate actions:
+Final frontend.sv version:
 
-1. Review `scpad_if.vh` for an explicit channel selector/flag and add comments documenting mutual exclusion.
-2. Remove redundant latches in `frontend.sv` (candidate: drop either l1a/l1c or l1b/l1d per IDX depending on instruction type) and update `frontend` accordingly
-3. Run the frontend unit testbench and smoke-test basic rd/wr flows with single-channel active
+```systemverilog
+/*  Nicha Muninnimit - nmuninni@purdue.edu */
+/*  Rafael Monteiro Martins Pinheiro - rmontei@purdue.edu */
+/*  Akshath Raghav Ravikiran - araviki@purdue.edu */
+
+`include "scpad_pkg.sv"
+`include "scpad_if.sv"
+import scpad_pkg::*;
+
+module frontend #(parameter logic [SCPAD_ID_WIDTH-1:0] IDX = '0) (scpad_if.frontend_vec fvif, scpad_if.frontend_body fsif);
+
+    logic [ROW_IDX_WIDTH-1:0] row_idx;
+    logic [COL_IDX_WIDTH-1:0] col_idx;
+
+    // Propagate downstream stalls    
+    assign fvif.fe_vec_stall[IDX] = fsif.fe_stall[IDX];
+
+    generate 
+        if (LATCH_INT) begin 
+            latch #(.T(req_t)) u_latch_vec_req (
+                .clk(fvif.clk),
+                .n_rst(fvif.n_rst),
+                .en(!fsif.fe_stall[IDX]),
+                .in(fvif.vec_req[IDX]),
+                .out(fsif.fe_req[IDX])
+            );
+            latch #(.T(res_t)) u_latch_vec_res (
+                .clk(fsif.clk),
+                .n_rst(fsif.n_rst),
+                .en(1'b1),
+                .in(fsif.fe_res[IDX]),
+                .out(fvif.vec_res[IDX])
+            );
+        end else begin 
+            assign fsif.fe_req[IDX] = fvif.vec_req[IDX];
+            assign fvif.vec_res[IDX] = fsif.fe_res[IDX]; 
+        end 
+    endgenerate
+
+    addr_to_row_col(fsif.fe_req[IDX].addr, row_idx, col_idx);
+
+    // Swizzle Desc
+    swizzle u_swizzle (
+        .row_or_col(fsif.fe_req[IDX].row_or_col),
+        .base_row(row_idx),
+        .row_id(fsif.fe_req[IDX].row_id),
+        .col_id(fsif.fe_req[IDX].col_id),
+        .rows(fsif.fe_req[IDX].num_rows),
+        .cols(fsif.fe_req[IDX].num_cols),
+
+        .valid_mask(fsif.fe_req[IDX].xbar.valid_mask),
+        .shift_mask(fsif.fe_req[IDX].xbar.shift_mask),
+        .slot_mask(fsif.fe_req[IDX].xbar.slot_mask)
+    );
+
+endmodule
+```
+
+No further RTL verification and synthesis need to be ran, since the frontend now is purely combinational logic.
 
 ## Abstract for Purdue Fall Undergraduate Research Expo 
+Written the drafts & final version of the Abstract for the Purdue Fall Undergraduate Research Expo with Haejune and Julio
+
+[Final version:](https://docs.google.com/document/d/1M9QqKr1Dj8NQ1uQZnBLfSfnlW8o7_9AssF9R0TTbinQ/edit?pli=1&tab=t.0)
+>AI accelerators are specialized processing units designed to accelerate matrix operations, which are fundamental to deep learning and ML workloads. Modern Tensor Cores can deliver massive compute throughput, but their performance is increasingly limited by memory bandwidth and data movement. In workloads such as convolutions and GEMMs, throughput depends on how efficiently tiles of activations and weights are streamed to the compute units, making memory efficiency critical to performance.
+
+>Our design aims to reduce the area cost of crossbars by implementing the area-optimized Benes Network algorithm. Additionally, the scratchpad will be software-controlled to reduce the overhead of tag arrays. Combining this with the multi-banked SRAM makes the scratchpad asynchronous, allowing for the prefetching of future tiles to take place while also servicing hits. The scratchpad is specialized to feed the Systolic Array’s activations and weights. Multiple SRAM banks and a pipelined crossbar allow the backend to pull data from DRAM while the frontend services the Vector Core and Systolic Array simultaneously. The load/store path is fully pipelined with fixed latency, enabling software to issue a steady stream of memory requests and guarantee throughput without stalls.
+
+>While this approach improves utilization and reduces redundant transfers, it introduces crossbar design complexity, as the crossbar needs to be able to handle row and column reading, and is limited by DRAM bandwidth.
+
+>This work demonstrates a scalable, software-managed memory system that closes the throughput gap between memory and compute. Our next steps will be to focus on RTL synthesis and verification.
 
 ## Next steps
 
