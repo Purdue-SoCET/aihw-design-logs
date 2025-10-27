@@ -227,7 +227,7 @@ Written the drafts & final version of the Abstract for the Purdue Fall Undergrad
 
 ## Next steps
 
-1. Finish the `frontend.sv` implementation before Friday's RTL freeze
-2. Remove redundant rd/wr latches per Akshath's guidance and update `frontend`
+1. Finish the `frontend.sv` implementation before Friday's RTL freeze (done)
+2. Remove redundant rd/wr latches per Akshath's guidance and update `frontend` (done)
 3. Update `scpad_if.vh` with a channel-selection comment/field and add test vectors that exercise the mutually‑exclusive path
 4. Start verification: write a minimal TB that toggles rd/wr channels (one at a time) and validates handshake and data paths
