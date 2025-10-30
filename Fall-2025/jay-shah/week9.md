@@ -8,7 +8,6 @@ No major barriers or concerns this week.
 ## Highlights This Week
 
 1. Discussion points this week:
-2. 
    a. Need to conserve the usage of dependency bits, do not needlessly propagate dependency to downstream instructions. Eg - Dependency of register 0 should not
    needlessly propagate to (n+1)th instruction if (n)th instruction is going to be executed only on the clearance of register 0 anyways. Reasoning: to conserve
    dependency bits.
@@ -22,10 +21,10 @@ No major barriers or concerns this week.
       instructions in pipe are independent, we will need more than 8 registers to capture this scenario. Need to fine tune the number later, but keeping 16
       registers for now.
    
-3. Completed the scheduler core design spec that we were working on since last week..
+2. Completed the scheduler core design spec that we were working on since last week..
 https://docs.google.com/document/d/15TX6ejTXwMY4YGQDDYGwEilZKdPOWRFbuzRXQ77uAfM/edit?tab=t.0
 
-4. Presented the Design review on Monday. Discussed the usage of vector Mov instructions in the presentation. Also discussed the on the compiler's job of
+3. Presented the Design review on Monday. Discussed the usage of vector Mov instructions in the presentation. Also discussed the on the compiler's job of
    setting the dependency bits. 
    https://docs.google.com/presentation/d/1VntG-ZXWseMChrpcM8x8SDW8myC_xpgNyK9JG81pr1I/edit?slide=id.p#slide=id.p
 ---
