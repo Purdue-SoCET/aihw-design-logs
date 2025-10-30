@@ -19,26 +19,44 @@ State: I am not stuck with anything, don't need help right now.
   - Designed how to feed the packetized DAG into codegen so that packets are preserved in the emitted assembly.
   - Kind of found some ways to represent packets directly as grouped IR nodes.
 
+```
+[ Buckets for <no-group> ]
+  depth 0: ['n0 LABEL', 'n1 ENTRY']
+
+[ Buckets for main_block0 ]
+  depth 0: ['n2 ENTRY', 'n3 FPRELU32', 'n4 FPRELU32']
+  depth 1: ['n5 JMP']
+  depth 2: ['n6 EXIT']
+
+[ Buckets for main_block1 ]
+  depth 0: ['n7 ENTRY', 'n8 CONSTI32', 'n10 CONSTU32', 'n12 CONSTI32']
+  depth 1: ['n14 CONSTU32']
+  depth 2: ['n9 STRI32', 'n11 ADDU32', 'n15 ADDU32']
+  depth 3: ['n13 STRI32']
+  depth 4: ['n16 LDRI32']
+  depth 5: ['n17 LDRI32']
+  depth 6: ['n18 ADDI32']
+  depth 7: ['n19 MOVI32']
+  depth 8: ['n20 JMP']
+  depth 9: ['n21 EXIT']
+```
 
 ## Design Choices
 - **Packetization:**
-  Packetization is done directly on the DAG by selecting dependency-free instructions and grouping them into packets of up to four. We made sure to preserve memory order and dependency correctness. Once we receive FU latency data, we’ll update the packetization logic to schedule based on latency as well.
+  Packetization is done directly on the DAG by selecting dependency-free instructions and grouping them into packets of up to four. Once we receive FU latency data, we'll update the packetization logic.
 
 - **Register Allocation:**
-  Since our architecture uses register banks, we need to consider both allocation efficiency and bank conflicts. We plan to experiment with simple greedy allocation first and then look into more advanced approaches once we have testable workloads.
-
-- **Scheduler Team:**
-  Even though the scheduler team passes their issues to us as expected, we still have to keep up with changing FU and register-bank configurations. This helps make sure our compiler output stays compatible and scalable as the hardware design evolves.
+  Since our architecture uses register banks, we need to consider both allocation efficiency and bank conflicts. We are trying to implement a greedy allocation algorithm.
 
 
 ## Next Week
-1. **Finish DAG to Packet Integration:**
-   - Finalize the IR-level packetization logic and make sure packets are visible in the lowered code.
-   - Add DAG visualization to verify that dependency edges are correct.
+1. **DAG to Packets:**
+   - Update the IR packetization logic and make sure packets are visible in the codegen.
+   - Also add Pydot DAG visualization at the codegen.
 
-2. **Register Allocation Work:**
-   - Continue studying register allocation techniques with a focus on register banking and conflict detection.
-   - Start testing simple allocation behavior with packetized DAGs.
+2. **Register Allocation:**
+   - Study register allocation techniques with register banking and conflict detection.
+   - Start testing simple allocations with packetized DAGs.
 
-3. **Latency-Aware Scheduling:**
-   - Once the hardware team provides FU latency data, begin integrating it into the packetization process for more accurate scheduling.
+3. **Latency-Aware:**
+   - Once the hardware team provides FU latency data, begin integrating it into the packetization.
