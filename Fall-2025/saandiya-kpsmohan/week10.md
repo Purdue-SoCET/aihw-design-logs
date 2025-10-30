@@ -92,7 +92,8 @@ print(result)
 
 ## Future plans
 1. Convert fifos into sram in gsau control unit.
-2. Come up with shifting unit bit generation python module
+2. Come up with shifting unit bit generation python module.
+3. Work on 2nd Design Review slides which is on 11/10 Monday.
 
 
 
