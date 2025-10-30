@@ -12,6 +12,7 @@
 - Certain moves allowed dictated in report
 - BF16 to int and vice versa conversions
 
+
 ## Next Steps:
 - Meet with Sooraj regarding changes
 - Begin flushing out interfaces to and from other subteam/modules
