@@ -10,7 +10,7 @@ State: 565 was COOKED so slower progress week
    Created draft for op_buffer RTL and added dvalid and mvalid signals to the veggie to help op buffer. Decided to make it a seperate module but plan on making 1 module that integrates both.
 
 3) Veggie synthesis
-   Synthesized veggie with 1, 32, and 64 registers per bank. Area is kind of huge
+   Synthesized veggie with 1, 32, and 64 registers per bank. Area is kind of huge, results found in area excel sheet
    
 # Future Plans
 - Cacti for area planning
