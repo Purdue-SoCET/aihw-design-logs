@@ -12,8 +12,12 @@ State: I have a lot on my todo list
 
    Fixed A LOT of issues wrong with op buffer. Transparant when no conflict but when there is a conflict it outputs whatever is held in the temporary registers.  It clears the register state upon a read. Need to implement last part of the logic though
 
+3) Added veggie tests
+   Completed the veggie tb but on the integrated module to see how op buffer works with veggie. I was able to debug the issues with the op buffer which was that it was misidentifying when the logic was undergoing conflict. Ready gets set low as soon as conflict is detected so did not hold data long enough.
+
 # Future Plans
 - Finalize the op buffer
+- Cacti still
 - add the test to write to every bit of veggie
 - Jings list from wednesday meeting
 
