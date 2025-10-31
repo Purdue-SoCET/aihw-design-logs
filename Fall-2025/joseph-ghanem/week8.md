@@ -7,7 +7,11 @@ State: 565 was COOKED so slower progress week
   Mask 0 register now all 1's, so no need to have vm bit anymore especially since it is not in the ISA. Therefore I changed the unit to reflect this and now only do splitting. 
 
 2) OP Buffer base RTL
+   Created draft for op_buffer RTL and added dvalid and mvalid signals to the veggie to help op buffer. Decided to make it a seperate module but plan on making 1 module that integrates both.
+
+3) Veggie synthesis
+   Synthesized veggie with 1, 32, and 64 registers per bank. Area is kind of huge
    
 # Future Plans
-- Fully verify veggie file
-- finish lane implementation + verification
+- Cacti for area planning
+- integration + added veggie tests
