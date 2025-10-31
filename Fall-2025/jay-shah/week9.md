@@ -32,4 +32,4 @@ https://docs.google.com/document/d/15TX6ejTXwMY4YGQDDYGwEilZKdPOWRFbuzRXQ77uAfM/
 ## Next Week’s Tasks
 1. Update the diagrams with new changes
 2. Meeting with the vector teams to finalize on writeback, move instructions and latency of operations.
-3. Need to start RTL and testpplans.
+3. Need to start RTL and testplans.
