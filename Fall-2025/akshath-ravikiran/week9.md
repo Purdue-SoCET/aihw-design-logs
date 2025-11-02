@@ -9,10 +9,11 @@
 [NONE]
 
 ## Progress
-- Check out the new main branch! 
-- Created a guide on using Flowkit, and what people have to change to get their designs synthesized. 
+- Check out the new [main branch](https://github.com/Purdue-SoCET/atalla/)! 
+- Created a guide on using [Flowkit](https://github.com/Purdue-SoCET/atalla/blob/main/docs/synthesis.md), and what people have to change to get their designs synthesized. 
 - Started working on the Cycle Accurate Simulator. Discussed with Emmi and Rafael on how to proceed, and what parts of the design they'll work on. 
-- Discussed with Compiler Team and Scheduler on the programming model for Atalla. Where is the de-markation between the SW routines and compiler frontend. 
+- Discussed with Compiler Team and Scheduler on the programming model for Atalla. 
+> Where is the de-markation between the SW routines and compiler frontend? 
 - Created a set of guidelines, and presented on Sunday, on how people need to write code that goes into Atalla. 
 
 ## Future Plan
