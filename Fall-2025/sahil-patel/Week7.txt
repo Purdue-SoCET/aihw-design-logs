@@ -1,0 +1,42 @@
+Not Stuck on Anything
+
+Week 7 — Vector ISA Bring-Up 
+Goals
+
+40-bit token layout for vector and scalar families.
+Add vector register file (V0–V31) and keep it separate from scalar RF.
+Set up instruction for VV / VI / VS / VM that mirror scalar style.
+
+What I did:
+Tokens (40-bit, bits 0–39)
+Implemented: AtallaRToken, AtallaBRToken, AtallaIToken, AtallaMToken, AtallaMIToken, AtallaSToken
+Vector: AtallaVVToken, AtallaVSToken, AtallaVIToken, AtallaVMemToken
+Mask/DMAs: AtallaSDMAToken, AtallaMTSToken, AtallaSTMToken
+Verified fields match Bit-spec-updated (e.g., opcode [0:6], vd/rs1/vs1/vs2 ranges, VI imm8/imm5, VV mask/sac, VM tile_r_c_count/rc/sp/mask/rc_id).
+Registers
+Created AtallaVectorRegister and enumerated V0..V31.
+Separate vector_register_class to avoid allocator mixing with scalar regs.
+
+Instruction setup
+Added base classes bound to the correct 40-bit tokens:
+AtallaVVInstruction, AtallaVIInstruction, AtallaVSInstruction, AtallaVMemInstruction.
+Wrote helpers that match token field names:
+make_vv(mnemonic, opcode, default_mask=0, default_sac=0)
+make_vi(mnemonic, opcode, default_mask=0) → uses imm8 + imm5
+make_vs(mnemonic, opcode, default_mask=0)
+make_vm(mnemonic, opcode, default_tile_r_c_count=0, default_rc=0, default_sp=0, default_mask=0, default_rc_id=0)
+
+Tests / Validation
+Assembled a few VV/VI/VS forms to confirm fields land in the expected bit slices.
+Confirmed assembler syntax stays scalar-close:
+VV: mnemonic vd, vs1, vs2
+VI: mnemonic vd, vs1, imm8, imm5
+VS: mnemonic vd, vs1, rs1
+VM: mnemonic vd, rs1 (control fields defaulted in patterns)
+Issues / Risks
+VM opcodes not finalized in sheet; left as TODO.
+SDMA sub-fields confirmed.
+
+Next Steps (for Week 8)
+Fill out concrete instructions per Sheet5/Bit-spec-updated.
+Integrate imports in arch.py and assemble tests.
