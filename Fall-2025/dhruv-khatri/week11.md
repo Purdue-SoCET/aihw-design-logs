@@ -1,7 +1,7 @@
 ## State
 I'm not stuck with anything.
 
-## Progress
+## Progress (A little less because of exam + interview prep)
 * Listed a few performance metrics which will be useful
 * Initial fix for random time delays being added in the timing controller to meet requirements
 * All code changes can be found on my [github branch](https://github.com/Purdue-SoCET/tensor-core/tree/memory_subsystem_dhruv)
