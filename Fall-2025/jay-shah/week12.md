@@ -7,7 +7,7 @@ No major barriers or concerns this week.
 
 ## Highlights This Week
 
-1. Discussion points on emulator.
+1. Discussion points on the emulator.
    
 2. Pushed gemm.py, lanes.py in emulator branch.
    
