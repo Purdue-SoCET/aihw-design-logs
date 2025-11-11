@@ -58,7 +58,7 @@ On a miss:
 
 All of this was useless, since we now moved from modelling the Lock-Up Free Cache to the Vector Core.
 
-Vector Core is the piece of Atalla's design that will change the most in the next iteration of updates during next semester. We want to be able to simulate the state-of-the-art design and have a base from how the design can be improved in order to have a 
+Vector Core is the piece of Atalla's design that will change the most in the next iteration of updates during next semester. We want to be able to simulate the state-of-the-art design and have a base from how the design can be improved in order to have a better performance
 
 Also, the Cycle-Accurate Simulator will now be purely in Python, so we can have a better development time, better support from AI tools and we can expect newcomers to know Python
 
