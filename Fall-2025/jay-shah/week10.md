@@ -22,11 +22,9 @@ No major barriers or concerns this week.
    b. Interface from the scheduler Execute stage to each Scalar FU, Systolic array, Vector lane and scratchpad.
    c. Writeback interface to Scalar, Vector, Mask register file.
 
+---
+
 ## Next Week’s Tasks
 1. Update the diagrams with new changes.
 2. Design review prep
 3. Complete the interfaces.   
----
-
-## Next Week’s Tasks
-1. 
