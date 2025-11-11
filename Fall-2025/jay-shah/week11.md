@@ -8,7 +8,7 @@ No major barriers or concerns this week.
 ## Highlights This Week
 
 1. Semester project goals changed from complete RTL to creating a functional emulator. It will work as a software checker to ensure correctness of the hardware, 
-can later use it in verification of the RTL. Can also be used by the compiler team to understand the hardware architecture model. The emulator will also inform
+can later use it in verification of the RTL. It can also be used by the compiler team to understand the hardware architecture model. The emulator will also inform
 them about the packet design constraints.
    
 2. Discussion points on emulator. High level design of the Python emulator as follows:
@@ -19,8 +19,8 @@ them about the packet design constraints.
    
    c. Decode1 to classify the opcodes, and check legality of the packet. Will use the earlier created script for this.
    
-   d. Decode2 to identify the functional units of each instruction, and identify all dependencies and hazards. For RAW hazards, we can create record
-      to identify number of times processor will have to stall. Also similarly create a report for structural hazards (FUs in use, bank conflicts etc).
+   d. Decode2 to identify the functional units of each instruction, and identify all dependencies and hazards. For RAW hazards, we can record them in a
+      txt file to identify number of times processor will have to stall. Also similarly create a report for structural hazards (FUs in use, bank conflicts etc).
    
    e. Execute will encompass all functional units. Will put each FU in a separate file.
 
