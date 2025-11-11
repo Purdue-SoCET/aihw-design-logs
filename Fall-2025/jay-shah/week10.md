@@ -18,7 +18,7 @@ No major barriers or concerns this week.
    b. Compiler will try to fill independent instructions in the packet as much as possible, but no guarantees, so scheduler has to check dependencies. They
    will also try to make use of the green zones as much as possible based on the hardware latency information we provide them.
    
-3. Starting work on the interfaces. We have planned the interfaces in this way:
+2. Starting work on the interfaces. We have planned the interfaces in this way:
    
    a. There will be an interface among the back-to-back pipe stages of the scheduler (Fetch <-> Decode1. Decode1 <-> Decode2 etc.).
    
