@@ -7,7 +7,7 @@ I'm not stuck with anything, don't need help right now.
 ## Progress 
 This week, we presented during the second design review on Monday. It went pretty well, and we received good feedbacks. 
 
-I also modified the bf16 adder on wednesday for Joacob from Vector core. I realized I didn't mention about the custom left shift moduel on Monday when he asked for the adder module. 
+I also modified the bf16 adder on wednesday for Jacob from Vector core. I realized I didn't mention about the custom left shift moduel on Monday when he asked for the adder module. 
 
 In addition, I also rebuilt the entire Wallace Tree Multipllier module with modified rounding logics used in the adder. This shrinked down the area to 5062.174.
 
