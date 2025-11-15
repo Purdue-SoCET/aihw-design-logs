@@ -11,7 +11,7 @@ This week I spent finalizing changes on the adder and adding functionality for h
 
 For the l/s queue I added extra functionality of usign a FIFO queue from Jing's reccomendation in order to store destination registers that would eventually be passed to writeback stage with the data. The pupose of this is so that when performing loads, the queue stores the according destination registers with the incoming data because the scratchpad may take longer to pass the data. The queue is a depth of 8 because the scrathpad would take 8 cycles to send the data back to l/s unit. I also needed to support split transaction requests where the l/s unit could send data to the writeback stage while recieving new data instructions from the scheduler core.
 
-2.Vector L/S Code:
+2. Vector L/S Code:
 ![](images/vlsw9.png)
 
 3. Vector FIFO Code:
