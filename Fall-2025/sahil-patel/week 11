@@ -1,0 +1,36 @@
+I am not stuck
+
+Progress
+This week we focused on nailing down the overall structure of packetization and clarifying how it should fit into the compiler pipeline.
+
+First, during the Sunday meeting we agreed on a packetization flow:
+
+Use basic blocks.
+Basic blocks are sequences of instructions without internal branches.
+
+Use a DAG to track dependencies.
+For each basic block, we construct a directed acyclic graph where nodes are instructions and edges represent data or control dependencies. This gives us a clear picture of what can be executed in parallel.
+
+Packetize with several constraints in mind:
+– Maintain global load/store order. Loads and stores act as “anchors”: instructions before and after them must preserve their relative order so the program’s memory behavior stays correct.
+– Account for functional unit latencies. When we know FU delays, the scheduler/packetizer must respect them so results are ready when needed.
+– Minimize total latency. The packetizer should use available parallelism to reduce total cycles while obeying the above constraints.
+
+Progress on the scalar. We can now emit the generated scalar assembly into a .S file without extra logging noise. The main remaining issue is fixing some linking bugs, after which we should be able to produce a working executable.
+
+From the scheduler team’s design review we captured several important constraints and design choices:
+
+– The number of instructions per packet must remain configurable. We should not hardcode “4 instructions per packet” anywhere.
+– The number of dependency check bits and set bits (currently 16 and 16) is also not fixed and may change.
+– Register allocation must be bank-aware. We have 256 scalar registers split into 4 banks, and the allocator needs to track banks and avoid bank conflicts. This likely requires reading more on multi-bank register allocation techniques.
+– Functional unit delays will be specified later and need to be incorporated into scheduling.
+– Vector and mask registers are separate physical register types and must be treated distinctly in the backend.
+
+Added vec data type in frontend
+
+vec v1;
+
+Next steps
+– Identify the exact PPCI hooks where basic blocks and DAGs are available and attach our packetization logic there.
+– Continue exploring approaches for loading vector data into vector registers, including memory-based layouts and how they interact with future SDMA support.
+– Start reading about bank-aware register allocation strategies for a 4-bank, 256-register file.
