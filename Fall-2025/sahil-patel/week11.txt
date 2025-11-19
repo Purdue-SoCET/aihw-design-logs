@@ -1,0 +1,18 @@
+I am not stuck
+
+Progress
+This week’s focus was enabling GEMM on bfloat16 data and tightening the integration between vector instructions, the IR, and packetization.
+
+For data types, we needed bfloat16 support to initialize weight matrices. Instead of introducing a brand new float type throughout the frontend and backend, we modified the existing float definition to use 16 bits in both the IR and backend modules. This keeps the machinery for floats largely intact but changes the width.
+
+On the IR side, created gemm instrinsic function in the frontend to get a GEMM instruction. This required changing how the IR DAG represents and processes GEMM operations so they map correctly to our target instructions and later to SDMA + compute kernels.
+
+Changed the tokens and instructions to match the updated ISA spec sheet given to us. It is now 40 bits with some differnt types of token names. This led us to make changes to reflect the updates. 
+
+We merged all branches which allowed us to generate assembly for GEMM that includes vector instructions. 
+
+A concrete example is the STRI IR instruction. In the IR DAG, STRI gets forced into its own packet to preserve dependencies. However, in the backend, STRI expands into an li followed by a sw on the same register. Because packetization is currently driven by the IR-level grouping, those expanded instructions get forced back into the same packet, creating a hazard (e.g., the li and sw interacting with other instructions inappropriately). This shows that IR-level packetization is not enough; we need to consider actual machine registers and the final assembly.
+
+Next steps
+– Implement the full set of ISA patterns for the vector instructions.
+– Build an assembly-based packetization that is register and latency aware.
