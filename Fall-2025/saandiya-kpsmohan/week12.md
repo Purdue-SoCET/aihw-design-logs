@@ -22,6 +22,7 @@ I am not stuck
       - Suggestions for the next convolution team.
       - Potential things to look into for potential gain.
       - Is there a need for a specific compute unit for toeplitz or using vector core is still better?
+  4. I also came up with the list of all permutation orders we need for the Benes network for Nikhil to create a LUT: https://github.com/Purdue-SoCET/atalla/blob/tensor_compute_accelerator_saandiya/perm_gen.ipynb
    
 # Future Plans
 - Research on convolution library.
