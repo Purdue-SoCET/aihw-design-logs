@@ -8,7 +8,7 @@ I am not stuck.
 - Some common CNN models are MobilenetV2, Alexnet, Yolo, Resnet50.
 
 2. Column major vs row major
-- We are doing row major order because it requires 1 shift and 1 add for a normal instruction where as column major requires 3 shifts and 3 adds. Refer to the figure below:
+- We are doing row major order (loading rows from scpad) because it requires 1 shift and 1 add for a normal instruction where as column major requires 3 shifts and 3 adds. Refer to the figure below:
 ![IMG_9300](https://github.com/user-attachments/assets/0a6479e0-f303-42f3-91b8-bd98cde614b6)
 
 3. Output shape of systolic array
