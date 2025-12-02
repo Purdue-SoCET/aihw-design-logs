@@ -35,7 +35,7 @@ State: I am not stuck with anything, don't need help right now. This week might 
 ##### Dispatch
 
 - Decodes fetch instruction & decides which FU it needs
-- Creates the next [FUST] (functional unit status table) entries ([diif.n_fust_*]) and tag ([diif.n_t*]) information
+- Creates the next [FUST] (functional unit status table) entries ([diif.n_fust_\*]) and tag ([diif.n_t\*]) information
 - Maintains reg-status tables that record which FU will write each scalar/matrix reg and a "spec" for speculative writes
 - Hazards: computes hazard and WAW detection
   - Scalar side: [s_busy] depends on which scalar FU is busy
@@ -55,7 +55,7 @@ State: I am not stuck with anything, don't need help right now. This week might 
     - Matrix LD/ST
     - GEMM
   - [FUST_EMPTY], [FUST_WAIT], [FUST_RDY], [FUST_EX]
-- Latches [fust_*] [<=] [n_fust_*]
+- Latches [fust_\*] [<=] [n_fust_\*]
 - Dependency (tag) system:
   - Each FUST entry carries tag fields [t1], [t2] (for GEMM [gt1], [gt2], [gt3]) indicating producers for operands
   - [rdy] [<=] [n_rdy] checks whether tags are clear (no outstanding producers). If cleared, FUST entry is ready
@@ -84,8 +84,8 @@ State: I am not stuck with anything, don't need help right now. This week might 
 
 ##### Register/matrix status and tags
 - [rstsif] scalar reg status and [rstmif] matrix reg status track pending writes and tags
-- Dispatch sets [rst*.di_write] when it issues an instruction that will write to regs/matrices
-- WB stage clears status entries([rst*.wb_write])
+- Dispatch sets [rst\*.di_write] when it issues an instruction that will write to regs/matrices
+- WB stage clears status entries([rst\*.wb_write])
   - Also provides [wb] fields that dispatch/issue use to clear tags
 - Tags ([t1],[t2],[gt1],[gt2],[gt3]) used by issue logic
   - tag != 0 -> some earlier instruction will produce the operand
@@ -153,7 +153,7 @@ State: I am not stuck with anything, don't need help right now. This week might 
   - [single_ready] and [fu_ready] logic compute single-bit masks to simplify tie-breaking
   - Branch-misprediction handling: speculative FUST entries cleared (the ones with [spec]). [fetch] and [dispatch] flushed
 - FU busy detection and re-entrancy
-  - Dispatch checks [fust_*.busy] and [fu_ex] to know whether FU type is currently busy/finishing
+  - Dispatch checks [fust_\*.busy] and [fu_ex] to know whether FU type is currently busy/finishing
   - E.g.: dispatch's scalar [s_busy] calculation uses [fu_ex] and [fust_s.busy] to determine if it can allocate new scalar FU instruction
 
 ### Speculation handling
@@ -204,4 +204,3 @@ State: I am not stuck with anything, don't need help right now. This week might 
 
 - Start modelling Scheduler Core on atalla-sim
 - Write unit-tests for scheduling instructions to the Vector Core
-- 
