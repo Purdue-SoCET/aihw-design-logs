@@ -8,7 +8,7 @@
 [NONE]
 
 ## Progress
-- Check out the [Synthesis -- Atalla](https://docs.google.com/spreadsheets/d/1_Gi4uXS2h3LPqtJLWhsDoud7xXXNh3VplB5GbnDfr48/edit?gid=0#gid=0). 
+- Check out the [Synthesis -- Atalla](https://docs.google.com/spreadsheets/d/1_Gi4uXS2h3LPqtJLWhsDoud7xXXNh3VplB5GbnDfr48/edit?gid=0#gid=0). We're storing all the numbers for the Scratchpad Synthesis here. 
     > Highlights: We will go with a 1024 ROM + Benes, or a Batcher (3 cycle), or a 32-entry RAM + Benes. CLOS is being explored by Haejune as of now. 
 - Interesting discussion on how we can perform transpose using scratchpad. 
     > Question: Can we utilize the Scratchpad to perform a transpose operation on some tile in the DRAM and store it into memory. 
