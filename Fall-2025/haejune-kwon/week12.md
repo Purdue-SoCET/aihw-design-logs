@@ -4,7 +4,7 @@
 Still not able to understand clos fully. Will dig deeper into it
 
 ## Progress:
-- Did design review presenation on Tuesday.
+- Did a presenation on Tuesday.
 - Professor Anand found crossbar very interesting.
 - Sooraj suggested using something related to SRAM as a possible solution, but I did not understand this fully. I will have to talk to Akshath about this, because he seemed to like the idea very much.
 - Since clos can also be a good solution, I will do more research before talking to Akshath during the Sunday meeting, where I will discuss the better solution betweeen the two.
