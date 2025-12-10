@@ -1,0 +1,14 @@
+I am not stuck
+
+Progress
+
+During the sunday meeting our team worked and finished creating the research poster.
+
+On Monday we attended and presented the research conference poster presentations. 
+We met with multiple judges and were graded on our presentation and proejct. 
+
+We also presented at the senior design project review. We were asked questions and given advice by the team leads and Dr. Swabey.
+Some of the advice we received from Dr. Swabey were to test the limitations of using python as a compiler infastructure because of the efficiency trade-offs from not using C/C++.
+
+Next Steps
+Finish ISA vector patterns
