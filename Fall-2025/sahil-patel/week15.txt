@@ -1,0 +1,16 @@
+I am not stuck
+
+Progress 
+
+Worked on final report
+-goal for rough draft by sunday
+-created the layout for the document 
+-added background and solutions of work done
+-added diagrams of results 
+
+Misha integrated the packetization scripts that ivor created into the backend 
+Misha fixed opcodes and bitmaps of instructions
+
+next steps
+-ISA vector patterns and degug bf16
+-finish final report
