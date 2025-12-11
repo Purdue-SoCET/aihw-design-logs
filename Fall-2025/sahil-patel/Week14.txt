@@ -1,0 +1,5 @@
+I am not stuck
+
+Thanksgiving week 
+
+Did research on BinOps and how we can extend them to output vector operations. 

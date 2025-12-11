@@ -3,7 +3,7 @@
 - I do not need help
 
 ## Progress: 
-- Poster presentation for falll undergraduate research expo completed
+- Poster presentation for fall undergraduate research expo completed
 - Final presentation completed
 - Figure out how to clear up diagrams
 
