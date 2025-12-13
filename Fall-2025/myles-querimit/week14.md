@@ -1,4 +1,4 @@
-## State: I am a little stuck with testing the top-level of hte testbench
+## State: I am a little stuck with testing the top-level of the testbench
 
 ## Progress
  Brand new top level (again) feature the 2 cycle MAC made by Vinay! Changed the old MAC units to the new one, and kept most of the recent updates the same. With this I was able to create a  brand new testbench to try to verify the funcitionality. Now with the fact that we don't need to delay inputs, we stream in data with no delay!  
