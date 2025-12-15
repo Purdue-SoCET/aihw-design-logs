@@ -1,4 +1,4 @@
-# Week 14
+# Week 15
 
 ## State
 I am not stuck with anything. I would like to spend time viewing the blocking RTL code and testbench along with understanding the DDR simulator model. Progress on the final report will start this week. 
