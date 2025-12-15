@@ -5,7 +5,7 @@ State: Not stuck on anything
 - presented both in FURF and for my design review
 
 2) Lane Sequencer RTL
-- Finalized the rtl and began verifying the design with the sqrt module as it is the only finalized module. Below is the test plan I made and am passing each one:y
+Finalized the rtl and began verifying the design with the sqrt module as it is the only finalized module. Below is the test plan I made and am passing each one:y
 
 * **Scenario A (Happy Path):** Verifies the fundamental functionality of deserializing a vector slice into individual elements with correct data and control signals.
 * **Scenario B (Downstream Backpressure):** Tests the DUT's ability to pause execution and hold data stable when the downstream module asserts a not-ready signal.
