@@ -1,26 +1,20 @@
-> This week was focused on completing the Scratchpad Final Report. 
+> This week was focused on finishing the Benes + ROM and CLOS Synthesis. Also uploaded a more complete emulator for the Scheduler team! 
 
 ## State
-[NONE]
+[STALLED] On Haejune for CLOS. 
+[STALLED] On Julio for the Verification.
 
 ## Arch Updates
-The number of banks needs to be fixed at 32. Swizzling rows ensures all the contiguous values at the same horizontal row, but swizzling columns means that these values will be at different horizontal rows (indices) in different banks. Thus, we can't coalesce multiple words together by reducing the NUM_BANKS parameter. Our only option is to increase FOLDING_FACTOR, which k-folds each bank. 
-
-However, this gives very bad area efficiency and delay. Purely because all the sub-arrays are also 16-bit ports, and the wiring overhead kills us. 
-
-![Image1](./assets/scratchpad_access_time_fold_2MiB.png)
-![Image1](./assets/scratchpad_area_eff_fold_2MiB.png)
-
+We've explored the option of having a ROM next to the Benes, instead of the Cabbage.
+- The single-cycle Benes is the [smallest design](https://docs.google.com/spreadsheets/d/1_Gi4uXS2h3LPqtJLWhsDoud7xXXNh3VplB5GbnDfr48/edit?usp=sharing) we have, and fast enough for our needs. To operate it however, we needed a large ass cabbage unit, which in itself is 10x Benes area. 
+- So, I ran some tests on the emulator, and found that only 1024 unique permutations exist when we are writing and accessing over 1x1->32x32 tiles. 
+- To ensure this is indexable, I had to guarantee all the (base_row, row_id/col_id, num_rows, num_cols) mapped to [unique indices in said ROM](https://github.com/Purdue-SoCET/atalla/blob/scratchpad_main/rtl/modules/common/xbar/controlbits.mem).
 
 ## Progress
-- Showed everyone how to use toggle and code covergae on QuestaSim. 
-    > VLOG_FLAGS - ` -sv -compile_uselibs -cover bst -sv -pedanticerrors -lint -mfcu`
-    > VSIM_FLAGS - ` -coverage -c -voptargs="+acc"`
-- Please find our final report [here](https://docs.google.com/document/d/186o7OMmD8pstcT0LBeVNRixO5y7Undeff-K4Qaho2tY/edit?usp=sharing).
-- I tried to synthesize the ROM on Flowkit, but I kept getting an `inferred memory unit` error during the optimization pas in `flow.yaml`. I intend to flush this out.
-    > Note, this is technically useless, because the synthesis just gives FF numbers. 
-- Worked with Joseph to set up [PCACTI](https://github.com/jo-ghanem/pcacti_vrf.git), and synthesized some SRAM bank designs. Only scaled up the vertical folding factor, as can be seen in the Group report above. (Navigate to the #Results chapter)
-
+- Reviewed Saandiya's convolution kernel code. Looks a-ok. 
+- Edited the [Swizzle RTL (SHA-3ec499b9376d0)](https://github.com/Purdue-SoCET/atalla/blob/scratchpad_main/rtl/modules/memory/scratchpad/swizzle.sv) and the [Emulator code](https://github.com/Purdue-SoCET/atalla-sim/tree/master/sim/components/scratchpad).
+- Working on the Scratchpad [Final Report](https://docs.google.com/document/d/186o7OMmD8pstcT0LBeVNRixO5y7Undeff-K4Qaho2tY/edit?usp=sharing).
+- Finishing synthesizing [CLOS](https://docs.google.com/spreadsheets/d/1_Gi4uXS2h3LPqtJLWhsDoud7xXXNh3VplB5GbnDfr48/edit?usp=sharing) on MITLL90nm. 2x Benes size, 2x Clock Freq, 4nW less power. As long as the Benes + ROM is smaller, we'll keep this as the 2nd choice. 
 
 ## Future Plan
-- Finish verification over winter!
+Focusing purely on writing the Final Report. 
