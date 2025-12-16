@@ -1,0 +1,7 @@
+I am not stuck
+
+prgress
+Reviewed and fixed up final report for submission
+
+next steps
+done for the semester. Next semester we will finish vector implementation and work on compiler applications.
