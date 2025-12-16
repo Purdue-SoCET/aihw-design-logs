@@ -9,8 +9,7 @@ No major barriers or concerns this week.
 
 1. Fixed up the execute.py file to include all mnemonins for all the instructions - including scratchpad, I-type, VS-type, VI-type etc.
    
-2. Called the functions of scpad.py in the top level emulator.py file
-
+2. Called the functions of scpad.py in the top level emulator.py file and completed the integration of scpad functions in the emulator.
 ---
 
 ## Next Week’s Tasks
